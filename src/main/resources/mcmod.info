@@ -1,0 +1,16 @@
+[
+{
+  "modid": "twa",
+  "name": "Thinking With Aperture",
+  "description": "An addon to the Portal Gun mod created by iChun which adds in the old 1.7.10 items into newer versions.",
+  "version": "1.0",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["JacksonPlayz"],
+  "credits": "Thanks to iChun for creating the Portal Gun mod, Thanks to MCvinnyq for creating the models.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
