@@ -8,13 +8,16 @@ import net.minecraft.util.ResourceLocation;
 
 public class Tab extends CreativeTabs {
 
+    public static final int FRAMES = 8;
+    public static final long DELAY = 100;
+
     private ResourceLocation[] frames;
     private long lastTime;
     private int frame;
 
     public Tab() {
         super("thinkingwithaperture");
-        this.frames = new ResourceLocation[8];
+        this.frames = new ResourceLocation[FRAMES];
         for (int i = 0; i < this.frames.length; i++) {
             this.frames[i] = new ResourceLocation(ThinkingWithAperture.MODID, "textures/gui/container/creative_inventory/tab_aperture" + i + ".png");
         }
@@ -29,7 +32,7 @@ public class Tab extends CreativeTabs {
 
     @Override
     public ResourceLocation getBackgroundImage() {
-        if (System.currentTimeMillis() - this.lastTime >= 100) {
+        if (System.currentTimeMillis() - this.lastTime >= DELAY) {
             this.lastTime = System.currentTimeMillis();
             this.frame++;
             if (this.frame >= this.frames.length)
