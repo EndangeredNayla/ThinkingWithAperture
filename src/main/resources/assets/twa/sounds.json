@@ -34,7 +34,7 @@
     "sounds": [
       {
         "name": "twa:record/radio",
-		"stream": false,
+		"stream": true,
 		"volume": 0.125
       }
     ]
