@@ -1,0 +1,29 @@
+{
+  "record.still_alive": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "twa:record/portal1",
+        "stream": true
+      }
+    ]
+  },
+  "record.want_you_gone": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "twa:record/portal2",
+        "stream": true
+      }
+    ]
+  },
+  "record.cara_mia_addio": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "twa:record/turrets",
+        "stream": true
+      }
+    ]
+  }
+}

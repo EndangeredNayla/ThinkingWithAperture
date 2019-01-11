@@ -1,5 +1,7 @@
 package com.jacksonplayz.thinkingwithaperture;
 
+import com.jacksonplayz.thinkingwithaperture.client.Tab;
+import com.jacksonplayz.thinkingwithaperture.init.RegistrationHandler;
 import com.jacksonplayz.thinkingwithaperture.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -20,17 +22,12 @@ public class ThinkingWithAperture
     public static final String NAME = "Thinking With Aperture";
     public static final String VERSION = "1.0";
 
-    public static final CreativeTabs TAB = new CreativeTabs("thinkingwithaperture") {
-        @Override
-        public ItemStack getTabIconItem() {
-            return ItemStack.EMPTY;
-        }
-    };
+    public static final CreativeTabs TAB = new Tab();
 
     @Mod.Instance
     public static ThinkingWithAperture instance;
 
-    @SidedProxy(clientSide = "com.jacksonplayz.thinkingwithportals.proxy.ClientProxy", serverSide = "com.jacksonplayz.thinkingwithportals.proxy.ServerProxy")
+    @SidedProxy(clientSide = "com.jacksonplayz.thinkingwithaperture.proxy.ClientProxy", serverSide = "com.jacksonplayz.thinkingwithaperture.proxy.ServerProxy")
     public static CommonProxy proxy;
 
     private static Logger logger;
@@ -39,6 +36,7 @@ public class ThinkingWithAperture
     public void preInit(FMLPreInitializationEvent event)
     {
         proxy.preInit(event);
+        RegistrationHandler.init();
     }
 
     @EventHandler
