@@ -4,7 +4,8 @@
     "sounds": [
       {
         "name": "twa:record/portal1",
-        "stream": true
+		"stream": true,
+		"volume": 0.125
       }
     ]
   },
@@ -13,7 +14,8 @@
     "sounds": [
       {
         "name": "twa:record/portal2",
-        "stream": true
+		"stream": true,
+		"volume": 0.125
       }
     ]
   },
@@ -22,7 +24,8 @@
     "sounds": [
       {
         "name": "twa:record/turrets",
-        "stream": true
+		"stream": true,
+		"volume": 0.125
       }
     ]
   }
