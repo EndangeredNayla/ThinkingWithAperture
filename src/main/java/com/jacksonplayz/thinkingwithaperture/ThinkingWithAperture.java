@@ -1,6 +1,7 @@
 package com.jacksonplayz.thinkingwithaperture;
 
 import com.jacksonplayz.thinkingwithaperture.client.Tab;
+import com.jacksonplayz.thinkingwithaperture.init.ModEntities;
 import com.jacksonplayz.thinkingwithaperture.init.RegistrationHandler;
 import com.jacksonplayz.thinkingwithaperture.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,12 +37,12 @@ public class ThinkingWithAperture
     public void preInit(FMLPreInitializationEvent event)
     {
         proxy.preInit(event);
-        RegistrationHandler.init();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+        ModEntities.register();
         proxy.init(event);
     }
 

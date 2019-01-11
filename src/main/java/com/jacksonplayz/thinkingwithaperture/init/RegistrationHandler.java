@@ -37,6 +37,7 @@ public class RegistrationHandler
         @SubscribeEvent
         public static void register(RegistryEvent.Register<Block> event)
         {
+            ModBlocks.register();
             BLOCKS.forEach(block -> event.getRegistry().register(block));
         }
     }
@@ -59,6 +60,7 @@ public class RegistrationHandler
         @SubscribeEvent
         public static void register(RegistryEvent.Register<Item> event)
         {
+            ModItems.register();
             ITEMS.forEach(item -> event.getRegistry().register(item));
         }
     }
@@ -117,15 +119,8 @@ public class RegistrationHandler
                 }
             } else
             {
-                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(ThinkingWithAperture.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
             }
         }
-    }
-
-    public static void init()
-    {
-        ModItems.register();
-        ModBlocks.register();
-        ModEntities.register();
     }
 }
