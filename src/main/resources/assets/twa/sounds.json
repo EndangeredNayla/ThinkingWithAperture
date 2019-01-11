@@ -28,5 +28,15 @@
 		"volume": 0.125
       }
     ]
+  },
+  "record.radio_loop": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "twa:record/radio",
+		"stream": false,
+		"volume": 0.125
+      }
+    ]
   }
 }

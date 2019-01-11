@@ -17,6 +17,7 @@ public class ModSounds
     public static final SoundEvent STILL_ALIVE;
     public static final SoundEvent WANT_YOU_GONE;
     public static final SoundEvent CARA_MIA_ADDIO;
+    public static final SoundEvent RADIO_LOOP;
 
     private static SoundEvent registerSound(String name)
     {
@@ -31,6 +32,7 @@ public class ModSounds
         STILL_ALIVE = registerSound("record.still_alive");
         WANT_YOU_GONE = registerSound("record.want_you_gone");
         CARA_MIA_ADDIO = registerSound("record.cara_mia_addio");
+        RADIO_LOOP = registerSound("record.radio_loop");
     }
 
     @Mod.EventBusSubscriber(modid = ThinkingWithAperture.MODID)
