@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
@@ -72,5 +73,10 @@ public class EntityCube extends EntityLiving {
     private void dropBlock()
     {
             Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(ModItems.WEIGHTED_CUBE));
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(ModItems.WEIGHTED_CUBE);
     }
 }
