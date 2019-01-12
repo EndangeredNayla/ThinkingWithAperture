@@ -111,6 +111,6 @@ public class EntityRadio extends EntityLiving {
 
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
-        return new ItemStack(ModItems.RECORD_RADIO_LOOP);
+        return new ItemStack(ModItems.RADIO);
     }
 }
