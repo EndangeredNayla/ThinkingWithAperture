@@ -45,10 +45,7 @@ public class ItemCube extends Item {
             }
             else
             {
-                BlockPos blockpos1 = blockpos.up();
                 boolean flag1 = !worldIn.isAirBlock(blockpos) && !worldIn.getBlockState(blockpos).getBlock().isReplaceable(worldIn, blockpos);
-                flag1 = flag1 | (!worldIn.isAirBlock(blockpos1) && !worldIn.getBlockState(blockpos1).getBlock().isReplaceable(worldIn, blockpos1));
-
                 if (flag1)
                 {
                     return EnumActionResult.FAIL;
@@ -68,7 +65,6 @@ public class ItemCube extends Item {
                         if (!worldIn.isRemote)
                         {
                             worldIn.setBlockToAir(blockpos);
-                            worldIn.setBlockToAir(blockpos1);
                             EntityCube entity = new EntityCube(worldIn);
                             ItemMonsterPlacer.applyItemEntityDataToEntity(worldIn, player, itemstack, entity);
                             entity.setLocationAndAngles(d0 + 0.5D, d1, d2 + 0.5D, 0.0F, 0.0F);
