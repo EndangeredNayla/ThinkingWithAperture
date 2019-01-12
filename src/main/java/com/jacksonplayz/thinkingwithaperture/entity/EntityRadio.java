@@ -30,7 +30,7 @@ public class EntityRadio extends EntityLiving {
 
     public EntityRadio(World worldIn) {
         super(worldIn);
-        this.setSize(0.5F, 0.5F);
+        this.setSize(0.5F, 0.8F);
         this.repeatDelay = 0;
     }
 

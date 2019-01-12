@@ -19,7 +19,7 @@ public class RenderRadio extends RenderLiving<EntityRadio> {
     public static final ResourceLocation NORMAL = new ResourceLocation(ThinkingWithAperture.MODID, "textures/entity/radio/radio.png");
 
     public RenderRadio(RenderManager renderManager) {
-        super(renderManager, new ModelRadio(), 0.5f);
+        super(renderManager, new ModelRadio(), 0.3f);
     }
 
 
