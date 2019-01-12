@@ -1,17 +1,14 @@
 package com.jacksonplayz.thinkingwithaperture.client.model.armor;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
 
 /**
- * ModelLongFallBoots - MCvinnyq
- * Created using Tabula 7.0.0
+ * ModelLongFallBoots - MCvinnyq Created using Tabula 7.0.0
  */
 public class ModelLongFallBoots extends ModelBiped {
     public ModelRenderer RightBoot1;
@@ -19,11 +16,7 @@ public class ModelLongFallBoots extends ModelBiped {
     public ModelRenderer RightBoot2;
     public ModelRenderer LeftBoot2;
 
-    private EntityEquipmentSlot armorSlot;
-
-    public ModelLongFallBoots(EntityEquipmentSlot armorSlot) {
-
-        this.armorSlot = armorSlot;
+    public ModelLongFallBoots() {
 
         this.textureWidth = 64;
         this.textureHeight = 32;
@@ -61,7 +54,7 @@ public class ModelLongFallBoots extends ModelBiped {
             copyModelAngles(this.bipedLeftLeg, this.LeftBoot1);
         }
         if (entity instanceof EntityArmorStand) {
-            EntityArmorStand armorstand = (EntityArmorStand)entity;
+            EntityArmorStand armorstand = (EntityArmorStand) entity;
 
             // Right Leg
             this.RightBoot1.rotateAngleX = 0.017453292F * armorstand.getRightLegRotation().getX();
@@ -77,19 +70,10 @@ public class ModelLongFallBoots extends ModelBiped {
         }
 
         GlStateManager.pushMatrix();
-        if (this.isChild) {
-            if (armorSlot == EntityEquipmentSlot.FEET) {
-                this.RightBoot1.render(scale);
-                this.LeftBoot1.render(scale);
-            }
-        } else {
-            if (entity.isSneaking())
-                GlStateManager.translate(0.0F, 0.2F, 0.0F);
-            if (armorSlot == EntityEquipmentSlot.FEET) {
-                this.RightBoot1.render(scale);
-                this.LeftBoot1.render(scale);
-            }
-        }
+        if (entity.isSneaking())
+            GlStateManager.translate(0.0F, 0.2F, 0.0F);
+        this.RightBoot1.render(scale);
+        this.LeftBoot1.render(scale);
         GlStateManager.popMatrix();
     }
 
