@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -21,7 +22,7 @@ public class EntityBigTurret extends EntityLiving {
 
     public EntityBigTurret(World worldIn) {
         super(worldIn);
-        this.setSize(2.0F, 2.0F);
+        this.setSize(1.6F, 1.7F);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class EntityBigTurret extends EntityLiving {
 
     @Override
     public float getEyeHeight() {
-        return 1.0F;
+        return 0.925F;
     }
 
     @Override
@@ -65,5 +66,10 @@ public class EntityBigTurret extends EntityLiving {
         {
             entityitem.setNoDespawn();
         }
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(ModItems.BIG_TURRET);
     }
 }

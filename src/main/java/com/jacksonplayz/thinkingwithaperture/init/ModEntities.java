@@ -3,6 +3,7 @@ package com.jacksonplayz.thinkingwithaperture.init;
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityBigTurret;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityCube;
+import com.jacksonplayz.thinkingwithaperture.entity.EntityRadio;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -15,6 +16,7 @@ public class ModEntities
         registerEntity("cube", EntityCube.class, 0, 80);
         registerEntity("turret", EntityTurret.class, 1, 80);
         registerEntity("big_turret", EntityBigTurret.class, 2, 80);
+        registerEntity("radio", EntityRadio.class, 3, 80);
     }
 
     private static void registerEntity(String name, Class<? extends Entity> entity, int id, int trackingRange)

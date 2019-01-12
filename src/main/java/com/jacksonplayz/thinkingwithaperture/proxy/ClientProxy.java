@@ -4,9 +4,11 @@ import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 import com.jacksonplayz.thinkingwithaperture.client.model.armor.ModelLongFallBoots;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderBigTurret;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderCube;
+import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderRadio;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderTurret;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityBigTurret;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityCube;
+import com.jacksonplayz.thinkingwithaperture.entity.EntityRadio;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
 
 import net.minecraft.client.Minecraft;
@@ -31,6 +33,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityCube.class, new RenderCube(renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityTurret.class, new RenderTurret(renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityBigTurret.class, new RenderBigTurret(renderManager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRadio.class, new RenderRadio(renderManager));
 
     }
 

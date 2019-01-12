@@ -17,6 +17,8 @@ public class ModSounds
     public static final SoundEvent STILL_ALIVE;
     public static final SoundEvent WANT_YOU_GONE;
     public static final SoundEvent CARA_MIA_ADDIO;
+    public static final SoundEvent RADIO_LOOP_RECORD;
+
     public static final SoundEvent RADIO_LOOP;
 
     public static final SoundEvent TURRET_HURT;
@@ -38,7 +40,9 @@ public class ModSounds
         STILL_ALIVE = registerSound("record.still_alive");
         WANT_YOU_GONE = registerSound("record.want_you_gone");
         CARA_MIA_ADDIO = registerSound("record.cara_mia_addio");
-        RADIO_LOOP = registerSound("record.radio_loop");
+        RADIO_LOOP_RECORD = registerSound("record.radio_loop");
+
+        RADIO_LOOP = registerSound("entity.radio.loop");
 
         TURRET_HURT = registerSound("entity.turret.hurt");
         TURRET_DEATH = registerSound("entity.turret.death");

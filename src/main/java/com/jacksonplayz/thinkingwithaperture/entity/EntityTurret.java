@@ -8,8 +8,10 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityTurret extends EntityLiving {
@@ -62,4 +64,8 @@ public class EntityTurret extends EntityLiving {
         }
     }
 
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(ModItems.TURRET);
+    }
 }
