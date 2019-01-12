@@ -21,7 +21,7 @@ public class EntityBigTurret extends EntityLiving {
 
     public EntityBigTurret(World worldIn) {
         super(worldIn);
-        this.setSize(2.0F, 2.0F);
+        this.setSize(1.6F, 1.7F);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class EntityBigTurret extends EntityLiving {
 
     @Override
     public float getEyeHeight() {
-        return 1.0F;
+        return 0.925F;
     }
 
     @Override
