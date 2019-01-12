@@ -25,7 +25,7 @@ public class ModItems
         RECORD_STILL_ALIVE = new ItemModRecord("still_alive", ModSounds.STILL_ALIVE);
         RECORD_WANT_YOU_GONE = new ItemModRecord("want_you_gone", ModSounds.WANT_YOU_GONE);
         RECORD_CARA_MIA_ADDIO = new ItemModRecord("cara_mia_addio", ModSounds.CARA_MIA_ADDIO);
-        RECORD_RADIO_LOOP = new ItemModRecord("radio_loop", ModSounds.RADIO_LOOP);
+        RECORD_RADIO_LOOP = new ItemModRecord("radio_loop", ModSounds.RADIO_LOOP_RECORD);
 
         LONG_FALL_BOOTS = new ItemLongFallBoots(ItemArmor.ArmorMaterial.DIAMOND, 1, "long_fall_boots");
 

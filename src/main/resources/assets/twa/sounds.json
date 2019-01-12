@@ -39,6 +39,16 @@
       }
     ]
   },
+  "entity.radio.loop": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/radio/loop",
+        "stream": false,
+        "volume": 0.125
+      }
+    ]
+  },
   "entity.turret.hurt": {
     "category": "entity",
     "sounds": [
