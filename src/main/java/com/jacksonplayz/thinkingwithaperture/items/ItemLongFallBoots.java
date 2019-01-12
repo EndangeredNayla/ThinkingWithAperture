@@ -1,15 +1,14 @@
 package com.jacksonplayz.thinkingwithaperture.items;
 
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
-import com.jacksonplayz.thinkingwithaperture.client.model.armor.ModelLongFallBoots;
-import net.minecraft.client.model.ModelBase;
+import com.jacksonplayz.thinkingwithaperture.proxy.CommonProxy.ModelType;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,8 +24,7 @@ public class ItemLongFallBoots extends ItemArmor {
     }
 
     @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
-    {
+    public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
         return ThinkingWithAperture.MODID + ":textures/models/armor/longfallboots.png";
     }
 
@@ -36,7 +34,9 @@ public class ItemLongFallBoots extends ItemArmor {
         if (!itemStack.isEmpty()) {
             if (itemStack.getItem() instanceof ItemArmor) {
 
-                ModelBiped armorModel = new ModelLongFallBoots(armorSlot);
+                ModelBiped armorModel = ThinkingWithAperture.proxy.getModel(ModelType.LONG_FALL_BOOTS);
+                if(armorModel == null)
+                    return null;
 
                 armorModel.bipedRightLeg.showModel = armorSlot == EntityEquipmentSlot.FEET;
                 armorModel.bipedLeftLeg.showModel = armorSlot == EntityEquipmentSlot.FEET;
