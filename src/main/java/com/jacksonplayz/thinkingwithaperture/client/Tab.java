@@ -2,6 +2,7 @@ package com.jacksonplayz.thinkingwithaperture.client;
 
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 
+import com.jacksonplayz.thinkingwithaperture.init.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -27,7 +28,7 @@ public class Tab extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        return ItemStack.EMPTY;
+        return new ItemStack(ModItems.WEIGHTED_CUBE);
     }
 
     @Override

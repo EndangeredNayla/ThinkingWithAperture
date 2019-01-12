@@ -19,6 +19,12 @@ public class ModSounds
     public static final SoundEvent CARA_MIA_ADDIO;
     public static final SoundEvent RADIO_LOOP;
 
+    public static final SoundEvent TURRET_HURT;
+    public static final SoundEvent TURRET_DEATH;
+
+    public static final SoundEvent BIG_TURRET_HURT;
+    public static final SoundEvent BIG_TURRET_DEATH;
+
     private static SoundEvent registerSound(String name)
     {
         ResourceLocation resource = new ResourceLocation(ThinkingWithAperture.MODID, name);
@@ -33,6 +39,12 @@ public class ModSounds
         WANT_YOU_GONE = registerSound("record.want_you_gone");
         CARA_MIA_ADDIO = registerSound("record.cara_mia_addio");
         RADIO_LOOP = registerSound("record.radio_loop");
+
+        TURRET_HURT = registerSound("entity.turret.hurt");
+        TURRET_DEATH = registerSound("entity.turret.death");
+
+        BIG_TURRET_HURT = registerSound("entity.big_turret.hurt");
+        BIG_TURRET_DEATH = registerSound("entity.big_turret.death");
     }
 
     @Mod.EventBusSubscriber(modid = ThinkingWithAperture.MODID)

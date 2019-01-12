@@ -8,3 +8,11 @@ item.record.still_alive.desc=Valve - Still Alive
 item.record.want_you_gone.desc=Valve - Want You Gone
 item.record.cara_mia_addio.desc=Valve - Cara Mia Addio
 item.record.radio_loop.desc=Aperture Science - Radio
+
+item.weighted_cube.name=Weighted Storage Cube
+item.companion_cube.name=Weighted Companion Cube
+
+item.long_fall_boots.name=Long Fall Boots
+
+item.big_turret.name=Big Turret
+item.turret.name=Turret

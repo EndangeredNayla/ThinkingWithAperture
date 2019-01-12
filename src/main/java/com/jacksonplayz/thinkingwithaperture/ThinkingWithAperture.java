@@ -1,12 +1,14 @@
 package com.jacksonplayz.thinkingwithaperture;
 
 import com.jacksonplayz.thinkingwithaperture.client.Tab;
+import com.jacksonplayz.thinkingwithaperture.common.CommonEvents;
 import com.jacksonplayz.thinkingwithaperture.init.ModEntities;
 import com.jacksonplayz.thinkingwithaperture.init.RegistrationHandler;
 import com.jacksonplayz.thinkingwithaperture.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -21,7 +23,7 @@ public class ThinkingWithAperture
 {
     public static final String MODID = "twa";
     public static final String NAME = "Thinking With Aperture";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "0.1";
 
     public static final CreativeTabs TAB = new Tab();
 
@@ -37,6 +39,7 @@ public class ThinkingWithAperture
     public void preInit(FMLPreInitializationEvent event)
     {
         proxy.preInit(event);
+        MinecraftForge.EVENT_BUS.register(new CommonEvents());
     }
 
     @EventHandler

@@ -38,5 +38,115 @@
 		"volume": 0.125
       }
     ]
+  },
+  "entity.turret.hurt": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/turret/hurt1",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/turret/hurt2",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/turret/hurt3",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/turret/hurt4",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/turret/hurt5",
+        "volume": 0.125
+      }
+    ]
+  },
+  "entity.turret.death": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/turret/death1",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/turret/death2",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/turret/death3",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/turret/death4",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/turret/death5",
+        "volume": 0.125
+      }
+    ]
+  },
+  "entity.big_turret.hurt": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/turret/hurt1",
+        "volume": 0.125,
+        "pitch": 0.5
+      },
+      {
+        "name": "twa:entity/turret/hurt2",
+        "volume": 0.125,
+        "pitch": 0.5
+      },
+      {
+        "name": "twa:entity/turret/hurt3",
+        "volume": 0.125,
+        "pitch": 0.5
+      },
+      {
+        "name": "twa:entity/turret/hurt4",
+        "volume": 0.125,
+        "pitch": 0.5
+      },
+      {
+        "name": "twa:entity/turret/hurt5",
+        "volume": 0.125,
+        "pitch": 0.5
+      }
+    ]
+  },
+  "entity.big_turret.death": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/turret/death1",
+        "volume": 0.125,
+        "pitch": 0.5
+      },
+      {
+        "name": "twa:entity/turret/death2",
+        "volume": 0.125,
+        "pitch": 0.5
+      },
+      {
+        "name": "twa:entity/turret/death3",
+        "volume": 0.125,
+        "pitch": 0.5
+      },
+      {
+        "name": "twa:entity/turret/death4",
+        "volume": 0.125,
+        "pitch": 0.5
+      },
+      {
+        "name": "twa:entity/turret/death5",
+        "volume": 0.125,
+        "pitch": 0.5
+      }
+    ]
   }
 }
