@@ -7,7 +7,6 @@ import net.minecraft.item.ItemArmor;
 
 public class ModItems
 {
-
     public static final Item RECORD_STILL_ALIVE;
     public static final Item RECORD_WANT_YOU_GONE;
     public static final Item RECORD_CARA_MIA_ADDIO;
