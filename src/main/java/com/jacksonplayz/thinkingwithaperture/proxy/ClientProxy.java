@@ -1,5 +1,6 @@
 package com.jacksonplayz.thinkingwithaperture.proxy;
 
+import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 import com.jacksonplayz.thinkingwithaperture.client.model.armor.ModelLongFallBoots;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderBigTurret;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderCube;
@@ -23,8 +24,8 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void init(FMLInitializationEvent event) {
-        ClientRegistry.registerEntityShader(EntityTurret.class, new ResourceLocation("shaders/post/sobel.json"));
-        ClientRegistry.registerEntityShader(EntityBigTurret.class, new ResourceLocation("shaders/post/sobel.json"));
+        ClientRegistry.registerEntityShader(EntityTurret.class, new ResourceLocation(ThinkingWithAperture.MODID,"shaders/post/turret.json"));
+        ClientRegistry.registerEntityShader(EntityBigTurret.class, new ResourceLocation(ThinkingWithAperture.MODID,"shaders/post/turret.json"));
 
         RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
         RenderingRegistry.registerEntityRenderingHandler(EntityCube.class, new RenderCube(renderManager));
