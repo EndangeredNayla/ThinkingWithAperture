@@ -3,6 +3,7 @@ package com.jacksonplayz.thinkingwithaperture.client.render.entity;
 import javax.annotation.Nullable;
 
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
+import com.jacksonplayz.thinkingwithaperture.client.model.entity.ModelBigTurret;
 import com.jacksonplayz.thinkingwithaperture.client.model.entity.ModelTurret;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
 
@@ -20,7 +21,7 @@ public class RenderTurret extends RenderLiving<EntityTurret>
     public static final ResourceLocation FAT = new ResourceLocation(ThinkingWithAperture.MODID, "textures/entity/turret/big_turret.png");
 
     public static final ModelTurret NORMAL_MODEL = new ModelTurret();
-    public static final ModelTurret FAT_MODEL = new ModelTurret();
+    public static final ModelBigTurret FAT_MODEL = new ModelBigTurret();
 
     public RenderTurret(RenderManager renderManager)
     {
@@ -40,11 +41,11 @@ public class RenderTurret extends RenderLiving<EntityTurret>
     {
         switch (entity.getType())
         {
-        case DEFECTIVE:
+        case NORMAL:
             return NORMAL;
         case FAT:
             return FAT;
-        case NORMAL:
+        case DEFECTIVE:
             break;
         case ORACLE:
             break;

@@ -10,6 +10,7 @@ import com.jacksonplayz.thinkingwithaperture.init.ModelHandler;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
@@ -19,6 +20,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistry
@@ -56,17 +58,21 @@ public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistr
         else
         {
             BlockPos blockpos = pos.offset(facing);
-            Entity entity = new EntityTurret(world, TurretType.byMetadata(stack.getMetadata()));
+            EntityTurret turret = new EntityTurret(world);
+            
+            ItemMonsterPlacer.applyItemEntityDataToEntity(world, player, stack, turret);
+            
+            turret.setLocationAndAngles((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + this.getYOffset(world, blockpos), (double) blockpos.getZ() + 0.5D, MathHelper.wrapDegrees(world.rand.nextFloat() * 360.0F), 0.0F);
+            turret.rotationYawHead = turret.rotationYaw;
+            turret.renderYawOffset = turret.rotationYaw;
+            turret.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(turret)), (IEntityLivingData) null);
+            world.spawnEntity(turret);
+            turret.setType(TurretType.byMetadata(stack.getMetadata()));
+            turret.playLivingSound();
 
-            if (entity != null)
+            if (!player.isCreative())
             {
-                entity.setPosition((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + this.getYOffset(world, blockpos), (double) blockpos.getZ() + 0.5D);
-                ItemMonsterPlacer.applyItemEntityDataToEntity(world, player, stack, entity);
-
-                if (!player.isCreative())
-                {
-                    stack.shrink(1);
-                }
+                stack.shrink(1);
             }
 
             return EnumActionResult.SUCCESS;

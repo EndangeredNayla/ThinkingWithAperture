@@ -9,9 +9,11 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.SoundEvent;
@@ -20,18 +22,19 @@ import net.minecraft.world.World;
 
 public class EntityTurret extends EntityLiving
 {
-    public static final DataParameter<Integer> TYPE = new DataParameter<Integer>(0, DataSerializers.VARINT);
-
-    public EntityTurret(World world, TurretType type)
-    {
-        super(world);
-        this.dataManager.register(TYPE, type.getMetadata());
-        this.setSize(this.getType().getWidth(), this.getType().getHeight());
-    }
+    public static final DataParameter<Integer> TYPE = EntityDataManager.<Integer>createKey(EntityTurret.class, DataSerializers.VARINT);
 
     public EntityTurret(World world)
     {
-        this(world, TurretType.NORMAL);
+        super(world);
+        this.setSize(this.getType().getWidth(), this.getType().getHeight());
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataManager.register(TYPE, 0);
     }
 
     @Override
@@ -77,15 +80,26 @@ public class EntityTurret extends EntityLiving
         }
     }
 
+    @Nullable
+    public EntityItem dropItemWithOffset(Item item, int size, float offsetY)
+    {
+        return this.entityDropItem(new ItemStack(item, size, this.dataManager.get(TYPE)), offsetY);
+    }
+
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ModItems.TURRET);
+        return new ItemStack(ModItems.TURRET, 1, this.dataManager.get(TYPE));
     }
 
     public TurretType getType()
     {
         return TurretType.byMetadata(this.dataManager.get(TYPE));
+    }
+
+    public void setType(TurretType type)
+    {
+        this.dataManager.set(TYPE, type.getMetadata());
     }
 
     public enum TurretType implements IStringSerializable
@@ -106,7 +120,7 @@ public class EntityTurret extends EntityLiving
 
         private TurretType(String name, float width, float height, float eyeHeight, float shadowSize, @Nullable SoundEvent ambientSound, @Nullable SoundEvent hurtSound, @Nullable SoundEvent deathSound)
         {
-            this.name= name;
+            this.name = name;
             this.width = width;
             this.height = height;
             this.eyeHeight = eyeHeight;
@@ -141,7 +155,7 @@ public class EntityTurret extends EntityLiving
         {
             return eyeHeight;
         }
-        
+
         public float getShadowSize()
         {
             return shadowSize;
