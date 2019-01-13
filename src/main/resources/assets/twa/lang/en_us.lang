@@ -9,10 +9,10 @@ item.record.want_you_gone.desc=Valve - Want You Gone
 item.record.cara_mia_addio.desc=Valve - Cara Mia Addio
 item.record.radio_loop.desc=Aperture Science - Radio
 
-item.weighted_cube.name=Weighted Storage Cube
-item.weighted_cube.info=Useless weighted cube.
-item.companion_cube.name=Weighted Companion Cube
-item.companion_cube.info=Lovely weighted cube.
+item.weighted_cube.storage.name=Weighted Storage Cube
+item.weighted_cube.storage.info=Useless weighted cube.
+item.weighted_cube.companion.name=Weighted Companion Cube
+item.weighted_cube.companion.info=Lovely weighted cube.
 
 item.long_fall_boots.name=Long Fall Boots
 item.long_fall_boots.info=They'll remove fall damage, just make sure you land on your feet.
