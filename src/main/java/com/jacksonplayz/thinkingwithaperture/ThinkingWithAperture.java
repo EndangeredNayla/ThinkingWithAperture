@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.jacksonplayz.thinkingwithaperture.client.Tab;
 import com.jacksonplayz.thinkingwithaperture.common.CommonEvents;
 import com.jacksonplayz.thinkingwithaperture.init.ModEntities;
+import com.jacksonplayz.thinkingwithaperture.init.RegistrationHandler;
 import com.jacksonplayz.thinkingwithaperture.net.NetworkHandler;
 import com.jacksonplayz.thinkingwithaperture.proxy.CommonProxy;
 
@@ -37,6 +38,7 @@ public class ThinkingWithAperture {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
+        MinecraftForge.EVENT_BUS.register(new RegistrationHandler());
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
         proxy.preInit(event);
     }

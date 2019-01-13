@@ -1,12 +1,23 @@
 package com.jacksonplayz.thinkingwithaperture.init;
 
-import com.jacksonplayz.thinkingwithaperture.items.*;
-import net.minecraft.block.material.Material;
+import java.util.List;
+
+import com.google.common.collect.Lists;
+import com.jacksonplayz.thinkingwithaperture.items.ItemBigTurret;
+import com.jacksonplayz.thinkingwithaperture.items.ItemCube;
+import com.jacksonplayz.thinkingwithaperture.items.ItemLongFallBoots;
+import com.jacksonplayz.thinkingwithaperture.items.ItemModRecord;
+import com.jacksonplayz.thinkingwithaperture.items.ItemPotatOS;
+import com.jacksonplayz.thinkingwithaperture.items.ItemRadio;
+import com.jacksonplayz.thinkingwithaperture.items.ItemTurret;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 
 public class ModItems
 {
+    private static final List<Item> ITEMS = Lists.<Item>newArrayList();
+
     public static final Item RECORD_STILL_ALIVE;
     public static final Item RECORD_WANT_YOU_GONE;
     public static final Item RECORD_CARA_MIA_ADDIO;
@@ -40,9 +51,11 @@ public class ModItems
         TURRET = new ItemTurret("turret");
 
         POTATOS = new ItemPotatOS("potatos");
+        
+        register();
     }
 
-    public static void register()
+    private static void register()
     {
         register(RECORD_STILL_ALIVE);
         register(RECORD_WANT_YOU_GONE);
@@ -61,8 +74,13 @@ public class ModItems
         register(POTATOS);
     }
 
-    private static void register(Item item)
+    public static void register(Item item)
     {
-        RegistrationHandler.Items.add(item);
+        ITEMS.add(item);
+    }
+
+    public static Item[] getItems()
+    {
+        return ITEMS.toArray(new Item[0]);
     }
 }
