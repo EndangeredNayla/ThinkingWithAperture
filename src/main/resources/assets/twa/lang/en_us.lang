@@ -10,15 +10,28 @@ item.record.cara_mia_addio.desc=Valve - Cara Mia Addio
 item.record.radio_loop.desc=Aperture Science - Radio
 
 item.weighted_cube.name=Weighted Storage Cube
+item.weighted_cube.info=Useless weighted cube.
 item.companion_cube.name=Weighted Companion Cube
+item.companion_cube.info=Lovely weighted cube.
 
 item.long_fall_boots.name=Long Fall Boots
+item.long_fall_boots.info=They'll remove fall damage, just make sure you land on your feet.
 
 item.turret.normal.name=Turret
+item.turret.normal.info=Are you still there?
 item.turret.fat.name=Fat Turret
+item.turret.fat.info=A normal turret, just larger. Has a beautiful opera voice too.
 item.turret.defective.name=Defective Turret
+item.turret.defective.info=Let's do this!
 item.turret.oracle.name=Oracle Turret
+item.turret.oracle.info=I'm different.
 
 item.radio.name=Radio
+item.radio.info=Has some great tunes.
 
 item.potatos.name=PotatOS
+item.potatos.info=It's pretty much a mini GLaDOS.
+item.potatos_parts.name=PotatOS Parts
+item.potatos_parts.info=Strange metal parts. Seems to have a slow clap module.
+item.energized_potato.name=Energized Potato
+item.energized_potato.info=I wouldn't eat this, though it's great for potato batteries.
