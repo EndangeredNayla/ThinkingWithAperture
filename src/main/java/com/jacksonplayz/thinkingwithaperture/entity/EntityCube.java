@@ -12,6 +12,8 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -32,6 +34,16 @@ public class EntityCube extends EntityLiving
     {
         super.entityInit();
         this.dataManager.register(TYPE, 0);
+    }
+
+    @Override
+    public boolean processInteract(EntityPlayer player, EnumHand hand) {
+        if (this.isEntityAlive() && !this.world.isRemote) {
+                if(this.dataManager.get(TYPE) == 1) {
+                    ((WorldServer) this.world).spawnParticle(EnumParticleTypes.HEART, posX, posY, posZ, 10, 0.5, 0.8, 0.5, 0.1);
+                }
+        }
+        return true;
     }
 
     @Override
