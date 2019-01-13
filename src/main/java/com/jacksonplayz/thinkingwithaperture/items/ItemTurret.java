@@ -21,7 +21,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistry
@@ -60,19 +59,21 @@ public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistr
         {
             BlockPos blockpos = pos.offset(facing);
             EntityTurret turret = new EntityTurret(world);
-            
+
             ItemMonsterPlacer.applyItemEntityDataToEntity(world, player, stack, turret);
-            
+
             turret.setLocationAndAngles((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + this.getYOffset(world, blockpos), (double) blockpos.getZ() + 0.5D, player.rotationYaw - 180, 0.0F);
             turret.rotationYawHead = turret.rotationYaw;
             turret.renderYawOffset = turret.rotationYaw;
             turret.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(turret)), (IEntityLivingData) null);
             world.spawnEntity(turret);
             turret.setType(TurretType.byMetadata(stack.getMetadata()));
-            if(stack.getMetadata() == 3) {
+            if (stack.getMetadata() == 3)
+            {
                 turret.playSound(ModSounds.ORACLE_TURRET_HELLO, 1.0F, 1.0F);
             }
-            else {
+            else
+            {
                 turret.playLivingSound();
             }
 
