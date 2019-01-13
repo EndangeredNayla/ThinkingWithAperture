@@ -7,12 +7,10 @@ import com.jacksonplayz.thinkingwithaperture.init.MetaItem;
 import com.jacksonplayz.thinkingwithaperture.init.ModelHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -62,6 +60,7 @@ public class ItemCube extends ItemBase implements MetaItem, CustomModelRegistry
 
             cube.setLocationAndAngles(d0 + 0.5D, d1, d2 + 0.5D, 0.0F, 0.0F);
             world.spawnEntity(cube);
+            world.playSound((EntityPlayer)null, cube.posX, cube.posY, cube.posZ, SoundEvents.BLOCK_METAL_PLACE, SoundCategory.BLOCKS, 0.75F, 0.8F);
             cube.setType(CubeType.byMetadata(stack.getMetadata()));
 
             if (!player.isCreative())
