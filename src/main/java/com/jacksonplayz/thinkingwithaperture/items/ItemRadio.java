@@ -3,7 +3,9 @@ package com.jacksonplayz.thinkingwithaperture.items;
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityCube;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityRadio;
+import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -26,56 +28,59 @@ public class ItemRadio extends ItemBase {
     }
 
     @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (facing == EnumFacing.DOWN)
+        ItemStack stack = player.getHeldItem(hand);
+
+        if (world.isRemote)
+        {
+            return EnumActionResult.SUCCESS;
+        }
+        else if (!player.canPlayerEdit(pos.offset(facing), facing, stack))
         {
             return EnumActionResult.FAIL;
         }
         else
         {
-            boolean flag = worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos);
-            BlockPos blockpos = flag ? pos : pos.offset(facing);
-            ItemStack itemstack = player.getHeldItem(hand);
+            BlockPos blockpos = pos.offset(facing);
+            EntityRadio radio = new EntityRadio(world);
 
-            if (!player.canPlayerEdit(blockpos, facing, itemstack))
-            {
-                return EnumActionResult.FAIL;
-            }
-            else
-            {
-                boolean flag1 = !worldIn.isAirBlock(blockpos) && !worldIn.getBlockState(blockpos).getBlock().isReplaceable(worldIn, blockpos);
-                if (flag1)
-                {
-                    return EnumActionResult.FAIL;
-                }
-                else
-                {
-                    double d0 = (double)blockpos.getX();
-                    double d1 = (double)blockpos.getY();
-                    double d2 = (double)blockpos.getZ();
-                    List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB(d0, d1, d2, d0 + 1.0D, d1 + 2.0D, d2 + 1.0D));
-                    if (!list.isEmpty())
-                    {
-                        return EnumActionResult.FAIL;
-                    }
-                    else
-                    {
-                        if (!worldIn.isRemote)
-                        {
-                            worldIn.setBlockToAir(blockpos);
-                            EntityRadio entity = new EntityRadio(worldIn);
-                            ItemMonsterPlacer.applyItemEntityDataToEntity(worldIn, player, itemstack, entity);
-                            entity.setLocationAndAngles(d0 + 0.5D, d1, d2 + 0.5D, 0.0F, 0.0F);
-                            worldIn.spawnEntity(entity);
-                            worldIn.playSound((EntityPlayer)null, entity.posX, entity.posY, entity.posZ, SoundEvents.BLOCK_METAL_PLACE, SoundCategory.BLOCKS, 0.75F, 0.8F);
-                        }
+            ItemMonsterPlacer.applyItemEntityDataToEntity(world, player, stack, radio);
 
-                        itemstack.shrink(1);
-                        return EnumActionResult.SUCCESS;
-                    }
-                }
+            radio.setLocationAndAngles((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + this.getYOffset(world, blockpos), (double) blockpos.getZ() + 0.5D, player.rotationYaw - 180, 0.0F);
+            radio.rotationYawHead = radio.rotationYaw;
+            radio.renderYawOffset = radio.rotationYaw;
+            radio.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(radio)), (IEntityLivingData) null);
+            world.spawnEntity(radio);
+
+            if (!player.isCreative())
+            {
+                stack.shrink(1);
             }
+
+            return EnumActionResult.SUCCESS;
+        }
+    }
+
+    private double getYOffset(World p_190909_1_, BlockPos p_190909_2_)
+    {
+        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(p_190909_2_)).expand(0.0D, -1.0D, 0.0D);
+        List<AxisAlignedBB> list = p_190909_1_.getCollisionBoxes((Entity) null, axisalignedbb);
+
+        if (list.isEmpty())
+        {
+            return 0.0D;
+        }
+        else
+        {
+            double d0 = axisalignedbb.minY;
+
+            for (AxisAlignedBB axisalignedbb1 : list)
+            {
+                d0 = Math.max(axisalignedbb1.maxY, d0);
+            }
+
+            return d0 - (double) p_190909_2_.getY();
         }
     }
 }
