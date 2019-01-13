@@ -19,12 +19,10 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemBigTurret extends Item
+public class ItemBigTurret extends ItemBase
 {
     public ItemBigTurret(String name) {
-        this.setUnlocalizedName(name);
-        this.setRegistryName(name);
-        this.setCreativeTab(ThinkingWithAperture.TAB);
+        super(name);
     }
 
     @Override

@@ -18,12 +18,10 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemCube extends Item {
+public class ItemCube extends ItemBase {
 
     public ItemCube(String name) {
-        this.setUnlocalizedName(name);
-        this.setRegistryName(name);
-        this.setCreativeTab(ThinkingWithAperture.TAB);
+        super(name);
     }
 
     @Override

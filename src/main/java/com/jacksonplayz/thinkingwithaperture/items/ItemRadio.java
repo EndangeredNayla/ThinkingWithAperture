@@ -19,12 +19,10 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemRadio extends Item {
+public class ItemRadio extends ItemBase {
 
     public ItemRadio(String name) {
-        this.setUnlocalizedName(name);
-        this.setRegistryName(name);
-        this.setCreativeTab(ThinkingWithAperture.TAB);
+        super(name);
     }
 
     @Override
