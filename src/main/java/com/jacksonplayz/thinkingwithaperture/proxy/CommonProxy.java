@@ -19,11 +19,11 @@ public class CommonProxy {
     }
     
     @Nullable
-    public <T> T getModel(ModelType type){
+    public <T extends ModelBase> T getModel(ModelType type){
         return null;
     }
 
     public enum ModelType {
-        LONG_FALL_BOOTS;
+        LONG_FALL_BOOTS
     }
 }
