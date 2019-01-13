@@ -6,13 +6,16 @@ import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderBigTurre
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderCube;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderRadio;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderTurret;
+import com.jacksonplayz.thinkingwithaperture.client.sound.RadioSound;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityBigTurret;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityCube;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityRadio;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -38,10 +41,16 @@ public class ClientProxy extends CommonProxy {
     @Override
     public <T extends ModelBase> T getModel(ModelType type) {
         switch (type) {
-            case LONG_FALL_BOOTS:
-                return (T) LONG_FALL_BOOTS_MODEL;
-            default:
-                return null;
+        case LONG_FALL_BOOTS:
+            return (T) LONG_FALL_BOOTS_MODEL;
+        }
+        return super.getModel(type);
+    }
+
+    @Override
+    public void playEntitySound(Entity entity) {
+        if (entity instanceof EntityRadio) {
+            Minecraft.getMinecraft().getSoundHandler().playSound(new RadioSound((EntityRadio) entity));
         }
     }
 }
