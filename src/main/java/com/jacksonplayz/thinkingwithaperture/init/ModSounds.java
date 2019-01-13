@@ -1,14 +1,15 @@
 package com.jacksonplayz.thinkingwithaperture.init;
 
+import java.util.List;
+
 import com.google.common.collect.Lists;
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
+
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import java.util.List;
 
 public class ModSounds
 {
@@ -33,8 +34,6 @@ public class ModSounds
     public static final SoundEvent ORACLE_TURRET_AMBIENT;
     public static final SoundEvent ORACLE_TURRET_HURT;
     public static final SoundEvent ORACLE_TURRET_DEATH;
-
-
 
     private static SoundEvent registerSound(String name)
     {
@@ -62,7 +61,7 @@ public class ModSounds
         DEFECTIVE_TURRET_HURT = registerSound("entity.defective_turret.hurt");
         DEFECTIVE_TURRET_DEATH = registerSound("entity.defective_turret.death");
 
-        ORACLE_TURRET_AMBIENT = registerSound("entity.oracle_turret.death");
+        ORACLE_TURRET_AMBIENT = registerSound("entity.oracle_turret.ambient");
         ORACLE_TURRET_HURT = registerSound("entity.oracle_turret.hurt");
         ORACLE_TURRET_DEATH = registerSound("entity.oracle_turret.death");
     }

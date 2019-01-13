@@ -14,8 +14,10 @@ item.companion_cube.name=Weighted Companion Cube
 
 item.long_fall_boots.name=Long Fall Boots
 
-item.big_turret.name=Big Turret
-item.turret.name=Turret
+item.turret.normal.name=Turret
+item.turret.fat.name=Fat Turret
+item.turret.defective.name=Defective Turret
+item.turret.oracle.name=Oracle Turret
 
 item.radio.name=Radio
 
