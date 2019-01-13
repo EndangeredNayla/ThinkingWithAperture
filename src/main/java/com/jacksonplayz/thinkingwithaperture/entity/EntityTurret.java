@@ -56,6 +56,12 @@ public class EntityTurret extends EntityLiving
     {
         return this.getType().getEyeHeight();
     }
+    
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return this.getType().getAmbientSound();
+    }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source)
@@ -104,7 +110,7 @@ public class EntityTurret extends EntityLiving
 
     public enum TurretType implements IStringSerializable
     {
-        NORMAL("normal", 0.8F, 1.5F, 1.0f, 0.5f, null, ModSounds.TURRET_HURT, ModSounds.TURRET_DEATH), FAT("fat", 1.6F, 1.7F, 0.925F, 1.5f, null, ModSounds.BIG_TURRET_HURT, ModSounds.BIG_TURRET_DEATH), DEFECTIVE("defective", 0.8F, 1.5F, 1.0f, 0.5f, null, null, null), ORACLE("oracle", 0.8F, 1.5F, 1.0f, 0.5f, null, null, null);
+        NORMAL("normal", 0.8F, 1.5F, 1.0f, 0.5f, null, ModSounds.TURRET_HURT, ModSounds.TURRET_DEATH), FAT("fat", 1.6F, 1.7F, 0.925F, 1.5f, null, ModSounds.BIG_TURRET_HURT, ModSounds.BIG_TURRET_DEATH), DEFECTIVE("defective", 0.8F, 1.5F, 1.0f, 0.5f, null, ModSounds.DEFECTIVE_TURRET_HURT, ModSounds.DEFECTIVE_TURRET_DEATH), ORACLE("oracle", 0.8F, 1.5F, 1.0f, 0.5f, ModSounds.ORACLE_TURRET_AMBIENT, ModSounds.ORACLE_TURRET_HURT, ModSounds.ORACLE_TURRET_DEATH);
 
         private String name;
         private float width;

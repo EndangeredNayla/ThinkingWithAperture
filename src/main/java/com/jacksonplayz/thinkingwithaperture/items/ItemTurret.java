@@ -62,7 +62,7 @@ public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistr
             
             ItemMonsterPlacer.applyItemEntityDataToEntity(world, player, stack, turret);
             
-            turret.setLocationAndAngles((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + this.getYOffset(world, blockpos), (double) blockpos.getZ() + 0.5D, MathHelper.wrapDegrees(world.rand.nextFloat() * 360.0F), 0.0F);
+            turret.setLocationAndAngles((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + this.getYOffset(world, blockpos), (double) blockpos.getZ() + 0.5D, player.rotationYaw - 180, 0.0F);
             turret.rotationYawHead = turret.rotationYaw;
             turret.renderYawOffset = turret.rotationYaw;
             turret.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(turret)), (IEntityLivingData) null);
