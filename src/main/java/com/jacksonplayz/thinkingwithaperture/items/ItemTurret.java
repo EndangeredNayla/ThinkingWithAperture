@@ -6,6 +6,7 @@ import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret.TurretType;
 import com.jacksonplayz.thinkingwithaperture.init.CustomModelRegistry;
 import com.jacksonplayz.thinkingwithaperture.init.MetaItem;
+import com.jacksonplayz.thinkingwithaperture.init.ModSounds;
 import com.jacksonplayz.thinkingwithaperture.init.ModelHandler;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -68,7 +69,12 @@ public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistr
             turret.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(turret)), (IEntityLivingData) null);
             world.spawnEntity(turret);
             turret.setType(TurretType.byMetadata(stack.getMetadata()));
-            turret.playLivingSound();
+            if(stack.getMetadata() == 3) {
+                turret.playSound(ModSounds.ORACLE_TURRET_HELLO, 1.0F, 1.0F);
+            }
+            else {
+                turret.playLivingSound();
+            }
 
             if (!player.isCreative())
             {
