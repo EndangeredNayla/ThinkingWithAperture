@@ -1,86 +1,112 @@
 package com.jacksonplayz.thinkingwithaperture.items;
 
-import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
-import com.jacksonplayz.thinkingwithaperture.entity.EntityCube;
+import java.util.List;
+
 import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
-import com.jacksonplayz.thinkingwithaperture.init.ModEntities;
+import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret.TurretType;
+import com.jacksonplayz.thinkingwithaperture.init.CustomModelRegistry;
+import com.jacksonplayz.thinkingwithaperture.init.MetaItem;
+import com.jacksonplayz.thinkingwithaperture.init.ModelHandler;
+
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class ItemTurret extends ItemBase
+public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistry
 {
-    public ItemTurret(String name) {
+    public ItemTurret(String name)
+    {
         super(name);
     }
 
     @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
     {
-        if (facing == EnumFacing.DOWN)
+        if (this.isInCreativeTab(tab))
+        {
+            for (TurretType type : TurretType.values())
+            {
+                items.add(new ItemStack(this, 1, type.getMetadata()));
+            }
+        }
+    }
+
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        ItemStack stack = player.getHeldItem(hand);
+
+        if (world.isRemote)
+        {
+            return EnumActionResult.SUCCESS;
+        }
+        else if (!player.canPlayerEdit(pos.offset(facing), facing, stack))
         {
             return EnumActionResult.FAIL;
         }
         else
         {
-            boolean flag = worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos);
-            BlockPos blockpos = flag ? pos : pos.offset(facing);
-            ItemStack itemstack = player.getHeldItem(hand);
+            BlockPos blockpos = pos.offset(facing);
+            Entity entity = new EntityTurret(world, TurretType.byMetadata(stack.getMetadata()));
 
-            if (!player.canPlayerEdit(blockpos, facing, itemstack))
+            if (entity != null)
             {
-                return EnumActionResult.FAIL;
-            }
-            else
-            {
-                BlockPos blockpos1 = blockpos.up();
-                boolean flag1 = !worldIn.isAirBlock(blockpos) && !worldIn.getBlockState(blockpos).getBlock().isReplaceable(worldIn, blockpos);
-                flag1 = flag1 | (!worldIn.isAirBlock(blockpos1) && !worldIn.getBlockState(blockpos1).getBlock().isReplaceable(worldIn, blockpos1));
+                entity.setPosition((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + this.getYOffset(world, blockpos), (double) blockpos.getZ() + 0.5D);
+                ItemMonsterPlacer.applyItemEntityDataToEntity(world, player, stack, entity);
 
-                if (flag1)
+                if (!player.isCreative())
                 {
-                    return EnumActionResult.FAIL;
-                }
-                else
-                {
-                    double d0 = (double)blockpos.getX();
-                    double d1 = (double)blockpos.getY();
-                    double d2 = (double)blockpos.getZ();
-                    List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB(d0, d1, d2, d0 + 1.0D, d1 + 2.0D, d2 + 1.0D));
-                    if (!list.isEmpty())
-                    {
-                        return EnumActionResult.FAIL;
-                    }
-                    else
-                    {
-                        if (!worldIn.isRemote)
-                        {
-                            worldIn.setBlockToAir(blockpos);
-                            worldIn.setBlockToAir(blockpos1);
-                            EntityTurret entity = new EntityTurret(worldIn);
-                            ItemMonsterPlacer.applyItemEntityDataToEntity(worldIn, player, itemstack, entity);
-                            entity.setLocationAndAngles(d0 + 0.5D, d1, d2 + 0.5D, 0.0F, 0.0F);
-                            worldIn.spawnEntity(entity);
-                            worldIn.playSound((EntityPlayer)null, entity.posX, entity.posY, entity.posZ, SoundEvents.BLOCK_METAL_PLACE, SoundCategory.BLOCKS, 0.75F, 0.8F);
-                        }
-
-                        itemstack.shrink(1);
-                        return EnumActionResult.SUCCESS;
-                    }
+                    stack.shrink(1);
                 }
             }
+
+            return EnumActionResult.SUCCESS;
+        }
+    }
+
+    private double getYOffset(World p_190909_1_, BlockPos p_190909_2_)
+    {
+        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(p_190909_2_)).expand(0.0D, -1.0D, 0.0D);
+        List<AxisAlignedBB> list = p_190909_1_.getCollisionBoxes((Entity) null, axisalignedbb);
+
+        if (list.isEmpty())
+        {
+            return 0.0D;
+        }
+        else
+        {
+            double d0 = axisalignedbb.minY;
+
+            for (AxisAlignedBB axisalignedbb1 : list)
+            {
+                d0 = Math.max(axisalignedbb1.maxY, d0);
+            }
+
+            return d0 - (double) p_190909_2_.getY();
+        }
+    }
+
+    @Override
+    public String getName(ItemStack stack)
+    {
+        return TurretType.byMetadata(stack.getMetadata()).getName();
+    }
+
+    @Override
+    public void registerModels()
+    {
+        for (TurretType type : TurretType.values())
+        {
+            ModelHandler.registerModel(this, type.getMetadata(), "turret_" + type.getName());
         }
     }
 }

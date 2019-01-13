@@ -3,7 +3,6 @@ package com.jacksonplayz.thinkingwithaperture.init;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.jacksonplayz.thinkingwithaperture.items.ItemBigTurret;
 import com.jacksonplayz.thinkingwithaperture.items.ItemCube;
 import com.jacksonplayz.thinkingwithaperture.items.ItemLongFallBoots;
 import com.jacksonplayz.thinkingwithaperture.items.ItemModRecord;
@@ -26,10 +25,7 @@ public class ModItems
     public static final Item LONG_FALL_BOOTS;
 
     public static final Item WEIGHTED_CUBE;
-
     public static final Item RADIO;
-
-    public static final Item BIG_TURRET;
     public static final Item TURRET;
 
     public static final Item POTATOS;
@@ -44,14 +40,11 @@ public class ModItems
         LONG_FALL_BOOTS = new ItemLongFallBoots(ItemArmor.ArmorMaterial.DIAMOND, 1, "long_fall_boots");
 
         WEIGHTED_CUBE = new ItemCube("weighted_cube");
-
         RADIO = new ItemRadio("radio");
-
-        BIG_TURRET = new ItemBigTurret("big_turret");
         TURRET = new ItemTurret("turret");
 
         POTATOS = new ItemPotatOS("potatos");
-        
+
         register();
     }
 
@@ -65,10 +58,7 @@ public class ModItems
         register(LONG_FALL_BOOTS);
 
         register(WEIGHTED_CUBE);
-
         register(RADIO);
-
-        register(BIG_TURRET);
         register(TURRET);
 
         register(POTATOS);
