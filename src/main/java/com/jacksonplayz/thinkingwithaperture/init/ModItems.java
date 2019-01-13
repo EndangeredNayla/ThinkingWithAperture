@@ -21,6 +21,8 @@ public class ModItems
     public static final Item BIG_TURRET;
     public static final Item TURRET;
 
+    public static final Item POTATOS;
+
     static
     {
         RECORD_STILL_ALIVE = new ItemModRecord("still_alive", ModSounds.STILL_ALIVE);
@@ -36,6 +38,8 @@ public class ModItems
 
         BIG_TURRET = new ItemBigTurret("big_turret");
         TURRET = new ItemTurret("turret");
+
+        POTATOS = new ItemPotatOS("potatos");
     }
 
     public static void register()
@@ -53,6 +57,8 @@ public class ModItems
 
         register(BIG_TURRET);
         register(TURRET);
+
+        register(POTATOS);
     }
 
     private static void register(Item item)
