@@ -3,15 +3,11 @@ package com.jacksonplayz.thinkingwithaperture.init;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.jacksonplayz.thinkingwithaperture.items.ItemCube;
-import com.jacksonplayz.thinkingwithaperture.items.ItemLongFallBoots;
-import com.jacksonplayz.thinkingwithaperture.items.ItemModRecord;
-import com.jacksonplayz.thinkingwithaperture.items.ItemPotatOS;
-import com.jacksonplayz.thinkingwithaperture.items.ItemRadio;
-import com.jacksonplayz.thinkingwithaperture.items.ItemTurret;
+import com.jacksonplayz.thinkingwithaperture.items.*;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemFood;
 
 public class ModItems
 {
@@ -29,6 +25,8 @@ public class ModItems
     public static final Item TURRET;
 
     public static final Item POTATOS;
+    public static final Item POTATOS_PARTS;
+    public static final Item ENERGIZED_POTATO;
 
     static
     {
@@ -44,6 +42,8 @@ public class ModItems
         TURRET = new ItemTurret("turret");
 
         POTATOS = new ItemPotatOS("potatos");
+        POTATOS_PARTS = new ItemBase("potatos_parts");
+        ENERGIZED_POTATO = new ItemBase("energized_potato");
 
         register();
     }
@@ -62,6 +62,8 @@ public class ModItems
         register(TURRET);
 
         register(POTATOS);
+        register(POTATOS_PARTS);
+        register(ENERGIZED_POTATO);
     }
 
     public static void register(Item item)

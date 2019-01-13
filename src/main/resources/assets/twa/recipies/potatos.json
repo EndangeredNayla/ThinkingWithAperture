@@ -1,0 +1,15 @@
+{
+  "type": "crafting_shapeless",
+  "group": "potatos",
+  "ingredients": [
+    {
+      "item": "twa:energized_potato"
+    },
+    {
+      "item": "twa:potatos_parts"
+    }
+  ],
+  "result": {
+    "item": "twa:potatos"
+  }
+}

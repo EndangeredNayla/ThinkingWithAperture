@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shapeless",
+  "group": "potatos",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:baked_potato"
+    },
+    {
+      "item": "minecraft:poisonous_potato"
+    }
+  ],
+  "result": {
+    "item": "twa:energized_potato"
+  }
+}
