@@ -17,6 +17,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -36,12 +37,17 @@ public class EntityRadio extends EntityLiving {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(ACTIVATED, true);
+    }
+    
+    @Override
+    public void onAddedToWorld() {
+        super.onAddedToWorld();
         this.setActivated(true);
     }
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
-        if (this.isEntityAlive()) {
+        if (this.isEntityAlive() && !this.world.isRemote) {
             this.setActivated(!this.isActivated());
         }
         return true;
@@ -67,6 +73,12 @@ public class EntityRadio extends EntityLiving {
             return true;
         }
     }
+    
+    @Override
+    public void setDead() {
+        this.setActivated(false);
+        super.setDead();
+    }
 
     public void setActivated(boolean activated) {
         this.dataManager.set(ACTIVATED, activated);
@@ -81,7 +93,7 @@ public class EntityRadio extends EntityLiving {
 
     private void playParticles() {
         if (this.world instanceof WorldServer) {
-            ((WorldServer) this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + (double) this.height / 1.5D, this.posZ, 10, (double) (this.width / 4.0F), (double) (this.height / 4.0F), (double) (this.width / 4.0F), 0.05D, Block.getStateId(Blocks.STONE.getDefaultState()));
+            ((WorldServer) this.world).spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX, this.posY + (double) this.height / 1.5D, this.posZ, 10, (double) (this.width / 4.0F), (double) (this.height / 4.0F), (double) (this.width / 4.0F), 0.05D, Block.getStateId(Blocks.IRON_BLOCK.getDefaultState()));
         }
     }
 
