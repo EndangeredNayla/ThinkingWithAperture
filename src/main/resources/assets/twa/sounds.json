@@ -158,5 +158,139 @@
         "pitch": 0.5
       }
     ]
+  },
+  "entity.defective_turret.hurt": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/defective_turret/hurt1",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/defective_turret/hurt2",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/defective_turret/hurt3",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/defective_turret/hurt4",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/defective_turret/hurt5",
+        "volume": 0.125
+      }
+    ]
+  },
+  "entity.defective_turret.death": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/defective_turret/death1",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/defective_turret/death2",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/defective_turret/death3",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/defective_turret/death4",
+        "volume": 0.125
+      }
+    ]
+  },
+  "entity.oracle_turret.hurt": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/oracle_turret/hurt1",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/hurt2",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/hurt3",
+        "volume": 0.125
+      }
+    ]
+  },
+  "entity.oracle_turret.death": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/oracle_turret/death1",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/death2",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/death3",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/death4",
+        "volume": 0.125
+      }
+    ]
+  },
+  "entity.oracle_turret.hello": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/oracle_turret/hello",
+        "volume": 0.125
+      }
+    ]
+  },
+  "entity.oracle_turret.ambient": {
+    "category": "entity",
+    "sounds": [
+      {
+        "name": "twa:entity/oracle_turret/ambient1",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/ambient2",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/ambient3",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/ambient4",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/ambient5",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/ambient6",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/ambient7",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/ambient8",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:entity/oracle_turret/ambient9",
+        "volume": 0.125
+      }
+    ]
   }
 }

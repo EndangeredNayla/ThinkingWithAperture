@@ -24,8 +24,17 @@ public class ModSounds
     public static final SoundEvent TURRET_HURT;
     public static final SoundEvent TURRET_DEATH;
 
+    public static final SoundEvent DEFECTIVE_TURRET_HURT;
+    public static final SoundEvent DEFECTIVE_TURRET_DEATH;
+
     public static final SoundEvent BIG_TURRET_HURT;
     public static final SoundEvent BIG_TURRET_DEATH;
+
+    public static final SoundEvent ORACLE_TURRET_AMBIENT;
+    public static final SoundEvent ORACLE_TURRET_HURT;
+    public static final SoundEvent ORACLE_TURRET_DEATH;
+
+
 
     private static SoundEvent registerSound(String name)
     {
@@ -49,6 +58,13 @@ public class ModSounds
 
         BIG_TURRET_HURT = registerSound("entity.big_turret.hurt");
         BIG_TURRET_DEATH = registerSound("entity.big_turret.death");
+
+        DEFECTIVE_TURRET_HURT = registerSound("entity.defective_turret.hurt");
+        DEFECTIVE_TURRET_DEATH = registerSound("entity.defective_turret.death");
+
+        ORACLE_TURRET_AMBIENT = registerSound("entity.oracle_turret.death");
+        ORACLE_TURRET_HURT = registerSound("entity.oracle_turret.hurt");
+        ORACLE_TURRET_DEATH = registerSound("entity.oracle_turret.death");
     }
 
     @Mod.EventBusSubscriber(modid = ThinkingWithAperture.MODID)
