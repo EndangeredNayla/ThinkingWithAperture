@@ -2,7 +2,7 @@ package com.jacksonplayz.thinkingwithaperture.proxy;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -21,6 +21,9 @@ public class CommonProxy {
     @Nullable
     public <T> T getModel(ModelType type){
         return null;
+    }
+    
+    public void playEntitySound(Entity entity) {
     }
 
     public enum ModelType {
