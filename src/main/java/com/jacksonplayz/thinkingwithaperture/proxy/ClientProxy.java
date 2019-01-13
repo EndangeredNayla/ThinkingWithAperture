@@ -13,6 +13,7 @@ import com.jacksonplayz.thinkingwithaperture.entity.EntityRadio;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -38,10 +39,10 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public <T> T getModel(ModelType type) {
+    public <T extends ModelBase> T getModel(ModelType type) {
         switch (type) {
         case LONG_FALL_BOOTS:
-            break;
+            return (T) LONG_FALL_BOOTS_MODEL;
         }
         return super.getModel(type);
     }

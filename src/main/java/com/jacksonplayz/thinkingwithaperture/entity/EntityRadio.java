@@ -29,7 +29,7 @@ public class EntityRadio extends EntityLiving {
 
     public EntityRadio(World worldIn) {
         super(worldIn);
-        this.setSize(0.5F, 0.5F);
+        this.setSize(0.5F, 0.8F);
     }
 
     @Override
@@ -95,6 +95,6 @@ public class EntityRadio extends EntityLiving {
 
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
-        return new ItemStack(ModItems.RECORD_RADIO_LOOP);
+        return new ItemStack(ModItems.RADIO);
     }
 }

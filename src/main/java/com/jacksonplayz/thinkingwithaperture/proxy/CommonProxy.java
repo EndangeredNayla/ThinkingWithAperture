@@ -2,6 +2,7 @@ package com.jacksonplayz.thinkingwithaperture.proxy;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -19,7 +20,7 @@ public class CommonProxy {
     }
     
     @Nullable
-    public <T> T getModel(ModelType type){
+    public <T extends ModelBase> T getModel(ModelType type){
         return null;
     }
     
@@ -27,6 +28,6 @@ public class CommonProxy {
     }
 
     public enum ModelType {
-        LONG_FALL_BOOTS;
+        LONG_FALL_BOOTS
     }
 }
