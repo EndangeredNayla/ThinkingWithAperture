@@ -1,80 +1,89 @@
 package com.jacksonplayz.thinkingwithaperture.items;
 
-import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityCube;
-import net.minecraft.entity.Entity;
+import com.jacksonplayz.thinkingwithaperture.entity.EntityCube.CubeType;
+import com.jacksonplayz.thinkingwithaperture.init.CustomModelRegistry;
+import com.jacksonplayz.thinkingwithaperture.init.MetaItem;
+import com.jacksonplayz.thinkingwithaperture.init.ModelHandler;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class ItemCube extends ItemBase {
-
-    public ItemCube(String name) {
+public class ItemCube extends ItemBase implements MetaItem, CustomModelRegistry
+{
+    public ItemCube(String name)
+    {
         super(name);
     }
 
     @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
     {
-        if (facing == EnumFacing.DOWN)
+        if (this.isInCreativeTab(tab))
+        {
+            for (CubeType type : CubeType.values())
+            {
+                items.add(new ItemStack(this, 1, type.getMetadata()));
+            }
+        }
+    }
+
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        ItemStack stack = player.getHeldItem(hand);
+
+        if (world.isRemote)
+        {
+            return EnumActionResult.SUCCESS;
+        }
+        else if (!player.canPlayerEdit(pos.offset(facing), facing, stack))
         {
             return EnumActionResult.FAIL;
         }
         else
         {
-            boolean flag = worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos);
-            BlockPos blockpos = flag ? pos : pos.offset(facing);
-            ItemStack itemstack = player.getHeldItem(hand);
 
-            if (!player.canPlayerEdit(blockpos, facing, itemstack))
-            {
-                return EnumActionResult.FAIL;
-            }
-            else
-            {
-                boolean flag1 = !worldIn.isAirBlock(blockpos) && !worldIn.getBlockState(blockpos).getBlock().isReplaceable(worldIn, blockpos);
-                if (flag1)
-                {
-                    return EnumActionResult.FAIL;
-                }
-                else
-                {
-                    double d0 = (double)blockpos.getX();
-                    double d1 = (double)blockpos.getY();
-                    double d2 = (double)blockpos.getZ();
-                    List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB(d0, d1, d2, d0 + 1.0D, d1 + 2.0D, d2 + 1.0D));
-                    if (!list.isEmpty())
-                    {
-                        return EnumActionResult.FAIL;
-                    }
-                    else
-                    {
-                        if (!worldIn.isRemote)
-                        {
-                            worldIn.setBlockToAir(blockpos);
-                            EntityCube entity = new EntityCube(worldIn);
-                            ItemMonsterPlacer.applyItemEntityDataToEntity(worldIn, player, itemstack, entity);
-                            entity.setLocationAndAngles(d0 + 0.5D, d1, d2 + 0.5D, 0.0F, 0.0F);
-                            worldIn.spawnEntity(entity);
-                            worldIn.playSound((EntityPlayer)null, entity.posX, entity.posY, entity.posZ, SoundEvents.BLOCK_METAL_PLACE, SoundCategory.BLOCKS, 0.75F, 0.8F);
-                        }
+            BlockPos blockpos = pos.offset(facing);
+            double d0 = (double)blockpos.getX();
+            double d1 = (double)blockpos.getY();
+            double d2 = (double)blockpos.getZ();
 
-                        itemstack.shrink(1);
-                        return EnumActionResult.SUCCESS;
-                    }
-                }
+            EntityCube cube = new EntityCube(world);
+            
+            ItemMonsterPlacer.applyItemEntityDataToEntity(world, player, stack, cube);
+
+            cube.setLocationAndAngles(d0 + 0.5D, d1, d2 + 0.5D, 0.0F, 0.0F);
+            world.spawnEntity(cube);
+            world.playSound((EntityPlayer)null, cube.posX, cube.posY, cube.posZ, SoundEvents.BLOCK_METAL_PLACE, SoundCategory.BLOCKS, 0.75F, 0.8F);
+            cube.setType(CubeType.byMetadata(stack.getMetadata()));
+
+            if (!player.isCreative())
+            {
+                stack.shrink(1);
             }
+
+            return EnumActionResult.SUCCESS;
+        }
+    }
+
+    @Override
+    public String getName(ItemStack stack)
+    {
+        return CubeType.byMetadata(stack.getMetadata()).getName();
+    }
+
+    @Override
+    public void registerModels()
+    {
+        for (CubeType type : CubeType.values())
+        {
+            ModelHandler.registerModel(this, type.getMetadata(), "weighted_" + type.getName() + "_cube");
         }
     }
 }

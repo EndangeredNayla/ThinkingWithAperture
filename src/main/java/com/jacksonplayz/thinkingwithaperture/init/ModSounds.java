@@ -32,6 +32,7 @@ public class ModSounds
     public static final SoundEvent BIG_TURRET_DEATH;
 
     public static final SoundEvent ORACLE_TURRET_AMBIENT;
+    public static final SoundEvent ORACLE_TURRET_HELLO;
     public static final SoundEvent ORACLE_TURRET_HURT;
     public static final SoundEvent ORACLE_TURRET_DEATH;
 
@@ -62,6 +63,7 @@ public class ModSounds
         DEFECTIVE_TURRET_DEATH = registerSound("entity.defective_turret.death");
 
         ORACLE_TURRET_AMBIENT = registerSound("entity.oracle_turret.ambient");
+        ORACLE_TURRET_HELLO = registerSound("entity.oracle_turret.hello");
         ORACLE_TURRET_HURT = registerSound("entity.oracle_turret.hurt");
         ORACLE_TURRET_DEATH = registerSound("entity.oracle_turret.death");
     }

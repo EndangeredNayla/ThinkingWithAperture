@@ -102,7 +102,7 @@ public class EntityRadio extends EntityLiving {
     }
 
     private void dropBlock() {
-        Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(ModItems.RECORD_RADIO_LOOP));
+        Block.spawnAsEntity(this.world, new BlockPos(this), new ItemStack(ModItems.RADIO));
     }
 
     @Override
