@@ -79,10 +79,10 @@ public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistr
         }
     }
 
-    private double getYOffset(World p_190909_1_, BlockPos p_190909_2_)
+    private double getYOffset(World world, BlockPos pos)
     {
-        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(p_190909_2_)).expand(0.0D, -1.0D, 0.0D);
-        List<AxisAlignedBB> list = p_190909_1_.getCollisionBoxes((Entity) null, axisalignedbb);
+        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).expand(0.0D, -1.0D, 0.0D);
+        List<AxisAlignedBB> list = world.getCollisionBoxes((Entity) null, axisalignedbb);
 
         if (list.isEmpty())
         {
@@ -97,7 +97,7 @@ public class ItemTurret extends ItemBase implements MetaItem, CustomModelRegistr
                 d0 = Math.max(axisalignedbb1.maxY, d0);
             }
 
-            return d0 - (double) p_190909_2_.getY();
+            return d0 - (double) pos.getY();
         }
     }
 

@@ -23,9 +23,6 @@ public class CommonProxy {
     public <T extends ModelBase> T getModel(ModelType type){
         return null;
     }
-    
-    public void playEntitySound(Entity entity) {
-    }
 
     public enum ModelType {
         LONG_FALL_BOOTS

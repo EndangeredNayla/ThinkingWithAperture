@@ -18,10 +18,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
-
     private static final ModelLongFallBoots LONG_FALL_BOOTS_MODEL = new ModelLongFallBoots();
 
     @Override
@@ -45,14 +47,5 @@ public class ClientProxy extends CommonProxy
             return (T) LONG_FALL_BOOTS_MODEL;
         }
         return super.getModel(type);
-    }
-
-    @Override
-    public void playEntitySound(Entity entity)
-    {
-        if (entity instanceof EntityRadio)
-        {
-            Minecraft.getMinecraft().getSoundHandler().playSound(new RadioSound((EntityRadio) entity));
-        }
     }
 }
