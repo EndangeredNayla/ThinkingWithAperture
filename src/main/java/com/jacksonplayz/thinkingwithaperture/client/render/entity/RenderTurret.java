@@ -19,6 +19,7 @@ public class RenderTurret extends RenderLiving<EntityTurret>
 {
     public static final ResourceLocation NORMAL = new ResourceLocation(ThinkingWithAperture.MODID, "textures/entity/turret/turret.png");
     public static final ResourceLocation FAT = new ResourceLocation(ThinkingWithAperture.MODID, "textures/entity/turret/big_turret.png");
+    public static final ResourceLocation DEFECTIVE = new ResourceLocation(ThinkingWithAperture.MODID, "textures/entity/turret/defective_turret.png");
 
     public static final ModelTurret NORMAL_MODEL = new ModelTurret();
     public static final ModelBigTurret FAT_MODEL = new ModelBigTurret();
@@ -46,7 +47,7 @@ public class RenderTurret extends RenderLiving<EntityTurret>
         case FAT:
             return FAT;
         case DEFECTIVE:
-            break;
+            return DEFECTIVE;
         case ORACLE:
             break;
         }
