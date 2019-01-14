@@ -15,7 +15,7 @@ import net.minecraftforge.common.util.Constants;
 public class ItemPotatOS extends ItemBase
 {
     public static final int MIN_TALK_DELAY = 60;
-    public static final int MAX_TALK_DELAY = 120;
+    public static final int MAX_TALK_DELAY = 90;
 
     public ItemPotatOS(String name)
     {
@@ -43,7 +43,7 @@ public class ItemPotatOS extends ItemBase
 
     private void onTalk(ItemStack stack, World world, BlockPos pos, boolean held)
     {
-        world.playSound(null, pos, ModSounds.WANT_YOU_GONE, SoundCategory.VOICE, 1.0f, 1.0f);
+        world.playSound(null, pos, ModSounds.POTATOS_AMBIENT, SoundCategory.VOICE, 1.0f, 1.0f);
     }
 
     private void update(ItemStack stack, World world, BlockPos pos, boolean held)

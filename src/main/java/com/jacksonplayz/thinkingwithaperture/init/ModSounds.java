@@ -36,6 +36,9 @@ public class ModSounds
     public static final SoundEvent ORACLE_TURRET_HURT;
     public static final SoundEvent ORACLE_TURRET_DEATH;
 
+    public static final SoundEvent POTATOS_AMBIENT;
+
+
     private static SoundEvent registerSound(String name)
     {
         ResourceLocation resource = new ResourceLocation(ThinkingWithAperture.MODID, name);
@@ -66,6 +69,8 @@ public class ModSounds
         ORACLE_TURRET_HELLO = registerSound("entity.oracle_turret.hello");
         ORACLE_TURRET_HURT = registerSound("entity.oracle_turret.hurt");
         ORACLE_TURRET_DEATH = registerSound("entity.oracle_turret.death");
+
+        POTATOS_AMBIENT = registerSound("item.potatos.ambient");
     }
 
     @Mod.EventBusSubscriber(modid = ThinkingWithAperture.MODID)

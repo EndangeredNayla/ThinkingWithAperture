@@ -292,5 +292,50 @@
         "volume": 0.125
       }
     ]
+  },
+  "item.potatos.ambient": {
+    "category": "voice",
+    "sounds": [
+      {
+        "name": "twa:item/potatos/ambient1",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient2",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient3",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient4",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient5",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient6",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient7",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient8",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient9",
+        "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/ambient10",
+        "volume": 0.125
+      }
+    ]
   }
 }
