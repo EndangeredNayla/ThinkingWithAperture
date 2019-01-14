@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.jacksonplayz.thinkingwithaperture.blocks.BlockBase;
+import com.jacksonplayz.thinkingwithaperture.blocks.BlockSurface;
 import com.jacksonplayz.thinkingwithaperture.items.ItemBlockBase;
 
 import net.minecraft.block.Block;
@@ -20,8 +21,8 @@ public class ModBlocks
 
     static
     {
-        WHITE_PORTAL_SURFACE = new BlockBase(Material.ROCK, "white_portal_surface");
-        METAL_SURFACE = new BlockBase(Material.IRON, "metal_surface");
+        WHITE_PORTAL_SURFACE = new BlockSurface(Material.ROCK, true, "white_portal_surface");
+        METAL_SURFACE = new BlockSurface(Material.IRON,false, "metal_surface");
 
         register();
     }
