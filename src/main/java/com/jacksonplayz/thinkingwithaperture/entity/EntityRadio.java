@@ -7,9 +7,13 @@ import com.jacksonplayz.thinkingwithaperture.net.message.MessagePlayRadioSound;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -73,7 +77,20 @@ public class EntityRadio extends EntityLiving {
             return true;
         }
     }
-    
+
+    @Override
+    public void onDeath(DamageSource cause) {
+        super.onDeath(cause);
+
+        if (this.world.getGameRules().getBoolean("doMobLoot"))
+        {
+            if (cause.getTrueSource() instanceof EntitySkeleton)
+            {
+                this.dropItem(ModItems.RECORD_RADIO_LOOP, 1);
+            }
+        }
+    }
+
     @Override
     public void setDead() {
         this.setActivated(false);

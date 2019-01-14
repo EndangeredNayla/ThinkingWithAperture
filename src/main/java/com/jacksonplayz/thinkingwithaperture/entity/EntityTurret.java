@@ -9,6 +9,9 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
@@ -49,6 +52,27 @@ public class EntityTurret extends EntityLiving
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
+    }
+
+    @Override
+    public void onDeath(DamageSource cause) {
+        super.onDeath(cause);
+
+        if (this.world.getGameRules().getBoolean("doMobLoot"))
+        {
+            if (cause.getTrueSource() instanceof EntitySkeleton)
+            {
+                if(this.dataManager.get(TYPE) == 3) {
+                    this.dropItem(ModItems.RECORD_STILL_ALIVE, 1);
+                }
+                else if(this.dataManager.get(TYPE) == 1) {
+                    this.dropItem(ModItems.RECORD_CARA_MIA_ADDIO, 1);
+                }
+                else {
+                    this.dropItem(ModItems.RECORD_WANT_YOU_GONE, 1);
+                }
+            }
+        }
     }
 
     @Override
