@@ -19,20 +19,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-public class ItemBlockBase extends ItemBlock
-{
-    public ItemBlockBase(Block block)
-    {
+public class ItemBlockBase extends ItemBlock {
+
+    public ItemBlockBase(Block block) {
         super(block);
-        this.setCreativeTab(ThinkingWithAperture.TAB);
-        this.setHasSubtypes(this instanceof MetaItem);
+        this.setHasSubtypes(this.block instanceof MetaItem);
     }
 
-    public ItemBlockBase(Block block, String name)
-    {
-        this(block);
-        this.setUnlocalizedName(name);
-        this.setRegistryName(name);
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return this.block instanceof MetaItem ? this.block.getUnlocalizedName() + "." + ((MetaItem) this.block).getName(stack) : super.getUnlocalizedName(stack);
+    }
+
+    @Override
+    public int getMetadata(int damage) {
+        return this.block instanceof MetaItem ? damage : super.getMetadata(damage);
     }
 
     @Override
@@ -47,17 +48,5 @@ public class ItemBlockBase extends ItemBlock
         {
             tooltip.add(TextFormatting.YELLOW + I18n.format("item.show_info", KeyBinds.KEY_SHOW_INFO.getDisplayName()));
         }
-    }
-
-    @Override
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        return this instanceof MetaItem ? this.getUnlocalizedName() + "." + ((MetaItem) this).getName(stack) : super.getUnlocalizedName(stack);
-    }
-
-    @Override
-    public int getMetadata(int damage)
-    {
-        return this instanceof MetaItem ? damage : super.getMetadata(damage);
     }
 }

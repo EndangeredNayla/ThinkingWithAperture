@@ -35,3 +35,8 @@ item.potatos_parts.name=PotatOS Parts
 item.potatos_parts.info=Strange metal parts. Seems to have a slow clap module.
 item.energized_potato.name=Energized Potato
 item.energized_potato.info=I wouldn't eat this, though it's great for potato batteries.
+
+tile.metal_surface.name=Metal Surface
+tile.metal_surface.info=A non-portalable surface.
+tile.white_portal_surface.name=White Portal Surface
+tile.white_portal_surface.info=A portalable surface.

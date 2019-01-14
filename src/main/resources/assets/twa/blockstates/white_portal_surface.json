@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "normal": { "model": "twa:white_portal_surface" },
+    "inventory": { "model": "twa:white_portal_surface" }
+  }
+}
