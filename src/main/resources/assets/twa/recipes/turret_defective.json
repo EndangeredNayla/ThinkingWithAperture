@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RDR",
+    "CRC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:concrete",
+      "data": 15
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "D": {
+      "item": "minecraft:dropper"
+    }
+  },
+  "result": {
+    "item": "twa:turret",
+    "data": 2
+  }
+}

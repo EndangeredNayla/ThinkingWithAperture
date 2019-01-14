@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "I I",
+    "WFW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:wool",
+      "data": 15
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "twa:long_fall_boots"
+  }
+}

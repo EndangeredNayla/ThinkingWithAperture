@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IIR",
+    "IGI",
+    "RNI"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:noteblock"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    }
+  },
+  "result": {
+    "item": "twa:potatos_parts"
+  }
+}
