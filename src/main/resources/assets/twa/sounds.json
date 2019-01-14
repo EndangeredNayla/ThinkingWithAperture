@@ -335,6 +335,10 @@
       {
         "name": "twa:item/potatos/ambient10",
         "volume": 0.125
+      },
+      {
+        "name": "twa:item/potatos/hello",
+        "volume": 0.125
       }
     ]
   }
