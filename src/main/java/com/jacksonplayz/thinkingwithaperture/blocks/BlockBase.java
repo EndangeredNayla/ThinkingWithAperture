@@ -9,15 +9,6 @@ import net.minecraft.util.ResourceLocation;
 
 public class BlockBase extends Block {
 
-    public BlockBase(Material material) {
-        this(material, material.getMaterialMapColor());
-    }
-
-    public BlockBase(Material material, MapColor mapColor) {
-        super(material, mapColor);
-        this.setCreativeTab(ThinkingWithAperture.TAB);
-    }
-
     public BlockBase(Material material, String name) {
         this(material, material.getMaterialMapColor(), name, name);
     }
