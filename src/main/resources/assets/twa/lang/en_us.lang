@@ -38,5 +38,7 @@ item.energized_potato.info=I wouldn't eat this, though it's great for potato bat
 
 tile.metal_surface.name=Metal Surface
 tile.metal_surface.info=A non-portalable surface.
+tile.stone_floor.name=Stone Floor
+tile.stone_floor.info=A decorative floor tile.
 tile.white_portal_surface.name=White Portal Surface
 tile.white_portal_surface.info=A portalable surface.

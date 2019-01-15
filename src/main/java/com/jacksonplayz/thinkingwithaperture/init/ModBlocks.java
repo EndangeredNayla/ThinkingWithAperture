@@ -18,11 +18,13 @@ public class ModBlocks
 
     public static final Block WHITE_PORTAL_SURFACE;
     public static final Block METAL_SURFACE;
+    public static final Block STONE_FLOOR;
 
     static
     {
         WHITE_PORTAL_SURFACE = new BlockSurface(Material.ROCK, true, "white_portal_surface");
         METAL_SURFACE = new BlockSurface(Material.IRON,false, "metal_surface");
+        STONE_FLOOR = new BlockSurface(Material.ROCK, true, "stone_floor");
 
         register();
     }
@@ -31,6 +33,7 @@ public class ModBlocks
     {
         registerFullBlock(WHITE_PORTAL_SURFACE);
         registerFullBlock(METAL_SURFACE);
+        registerFullBlock(STONE_FLOOR);
     }
 
     public static void registerFullBlock(Block block)
