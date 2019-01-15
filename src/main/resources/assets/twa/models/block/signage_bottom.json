@@ -1,0 +1,60 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "twa:models/signage/signage_bottom_icons",
+		"particle": "blocks/concrete_white"
+	},
+	"elements": [
+		{
+			"name": "rightBar",
+			"from": [16, 0, 0],
+			"to": [17, 16, 1.25],
+			"faces": {
+				"east": {"uv": [15.25, 0, 16, 15.25], "texture": "#0"},
+				"south": {"uv": [15.25, 0, 16, 15.25], "texture": "#0"},
+				"west": {"uv": [15.25, 0, 16, 15.25], "texture": "#0"}
+			}
+		},
+		{
+			"name": "screen",
+			"from": [0, 0, 0],
+			"to": [16, 16, 1],
+			"faces": {
+				"south": {"uv": [0.75, 0, 15.25, 15.25], "texture": "#0"}
+			}
+		},
+		{
+			"name": "leftBar",
+			"from": [-1, 0, 0],
+			"to": [0, 16, 1.25],
+			"faces": {
+				"east": {"uv": [0, 0, 0.75, 15.25], "texture": "#0"},
+				"south": {"uv": [0, 0, 0.75, 15.25], "texture": "#0"},
+				"west": {"uv": [0, 0, 0.75, 15.25], "texture": "#0"}
+			}
+		},
+		{
+			"name": "topBar",
+			"from": [-1, -1, 0],
+			"to": [17, 0, 1.5],
+			"faces": {
+				"east": {"uv": [0, 15.25, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 15.25, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 15.25, 16, 16], "texture": "#0"},
+				"up": {"uv": [0, 15.25, 16, 16], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [0, 15.25, 16, 16], "rotation": 180, "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "screenTop",
+			"children": [
+				{
+					"name": "top",
+					"children": [0, 1, 2, 3]
+				}
+			]
+		}
+	]
+}
