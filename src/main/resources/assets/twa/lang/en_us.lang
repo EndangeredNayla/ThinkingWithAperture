@@ -42,3 +42,6 @@ tile.stone_floor.name=Stone Floor
 tile.stone_floor.info=A decorative floor tile.
 tile.white_portal_surface.name=White Portal Surface
 tile.white_portal_surface.info=A portalable surface.
+
+tile.signage.name=Testing Chamber Sign
+tile.signage.info=Just your ordinary testing chamber sign.

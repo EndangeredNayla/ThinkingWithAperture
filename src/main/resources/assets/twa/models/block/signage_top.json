@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "portal_signage_top"
+		"2": "twa:models/signage/signage_top"
 	},
 	"elements": [
 		{

@@ -1,0 +1,9 @@
+{
+  "variants": {
+    "inventory": {"model": "twa:signage_top"},
+    "facing=north": {"model": "twa:signage_top", "y": 180},
+    "facing=south": { "model": "twa:signage_top"},
+    "facing=east": { "model": "twa:signage_top", "y": 270},
+    "facing=west": { "model": "twa:signage_top", "y": 90}
+  }
+}
