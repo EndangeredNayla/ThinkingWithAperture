@@ -1,21 +1,21 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "twa:models/signage/signage_top"
+		"2": "portal_signage_top"
 	},
 	"elements": [
 		{
-			"name": "rightBar",
+			"name": "topRightBar",
 			"from": [-1, 0, 14.75],
 			"to": [0, 16, 16],
 			"faces": {
-				"north": {"uv": [0, 0.75, 0.75, 16], "texture": "#2"},
+				"north": {"uv": [15.25, 0.75, 16, 16], "texture": "#2"},
 				"east": {"uv": [15.25, 0.75, 16, 16], "texture": "#2"},
 				"west": {"uv": [15.25, 0.75, 16, 16], "texture": "#2"}
 			}
 		},
 		{
-			"name": "screen",
+			"name": "screenTop",
 			"from": [0, 0, 15],
 			"to": [16, 16, 16],
 			"faces": {
@@ -23,7 +23,7 @@
 			}
 		},
 		{
-			"name": "leftBar",
+			"name": "topLeftBar",
 			"from": [16, 0, 14.75],
 			"to": [17, 16, 16],
 			"faces": {
@@ -45,9 +45,47 @@
 			}
 		}
 	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 4.25, -1],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 180, 0],
+			"translation": [0, 4.25, -1],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"firstperson_righthand": {
+			"rotation": [-1, 129, 0],
+			"translation": [5.25, 2.25, -2.75],
+			"scale": [0.25, 0.25, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-1, 129, 0],
+			"translation": [5.25, 2.25, -2.75],
+			"scale": [0.25, 0.25, 0.5]
+		},
+		"ground": {
+			"translation": [0, 1.25, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [35, -150, 0],
+			"translation": [-1.35, 2.5, 0],
+			"scale": [0.425, 0.425, 0.425]
+		},
+		"head": {
+			"translation": [0, -5.5, 2]
+		},
+		"fixed": {
+			"translation": [0, 1, 3.5],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
 	"groups": [
 		{
-			"name": "top",
+			"name": "screen",
 			"children": [0, 1, 2, 3]
 		}
 	]
