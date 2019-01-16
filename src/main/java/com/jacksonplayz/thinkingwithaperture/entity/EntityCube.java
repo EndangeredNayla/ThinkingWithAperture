@@ -123,4 +123,8 @@ public class EntityCube extends EntityLiving
             return values()[metadata];
         }
     }
+
+    protected boolean canDespawn() {
+        return false;
+    }
 }

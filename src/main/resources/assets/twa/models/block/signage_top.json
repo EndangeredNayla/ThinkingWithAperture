@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
+		"particle": "twa:models/signage/signage_top",
 		"2": "twa:models/signage/signage_top"
 	},
 	"elements": [
