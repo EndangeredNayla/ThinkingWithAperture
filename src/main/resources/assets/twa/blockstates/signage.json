@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": {"model": "twa:signage_bottom", "y": 180},
-    "facing=south": { "model": "twa:signage_bottom"},
-    "facing=east": { "model": "twa:signage_bottom", "y": 270},
-    "facing=west": { "model": "twa:signage_bottom", "y": 90}
-  }
-}
