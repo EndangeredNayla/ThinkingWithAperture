@@ -1,6 +1,7 @@
 package com.jacksonplayz.thinkingwithaperture.blocks;
 
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
+import com.jacksonplayz.thinkingwithaperture.tileentity.TileEntityTestChamberSign;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -12,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -20,8 +22,9 @@ import net.minecraft.world.World;
 
 public class BlockTestChamberSign extends BlockBase
 {
+    public static final AxisAlignedBB[] BOXES = { new AxisAlignedBB(0, 0, 0, 1, 2, 0.0625), new AxisAlignedBB(15 * 0.0625, 0, 0, 1, 2, 1), new AxisAlignedBB(0, 0, 15 * 0.0625, 1, 2, 1), new AxisAlignedBB(0, 0, 0, 0.0625, 2, 1), new AxisAlignedBB(0, -1, 0, 1, 1, 0.0625), new AxisAlignedBB(15 * 0.0625, -1, 0, 1, 1, 1), new AxisAlignedBB(0, -1, 15 * 0.0625, 1, 1, 1), new AxisAlignedBB(0, -1, 0, 0.0625, 1, 1) };
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public static final PropertyBool TOP = PropertyBool.create("top");
+    public static final PropertyBool TOP = PropertyBool.create("top");;
 
     public BlockTestChamberSign(String name)
     {
@@ -33,9 +36,9 @@ public class BlockTestChamberSign extends BlockBase
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return FULL_BLOCK_AABB;
+        return BOXES[state.getValue(FACING).getHorizontalIndex() + (state.getValue(TOP) ? 4 : 0)];
     }
 
     @Override
@@ -59,7 +62,7 @@ public class BlockTestChamberSign extends BlockBase
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4)).withProperty(TOP, meta % 8 > 4);
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4)).withProperty(TOP, meta / 4 > 0);
     }
 
     @Override
@@ -84,6 +87,18 @@ public class BlockTestChamberSign extends BlockBase
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         world.setBlockState(pos.up(), this.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(TOP, true));
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state)
+    {
+        return !state.getValue(TOP);
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state)
+    {
+        return new TileEntityTestChamberSign();
     }
 
     @Override

@@ -5,15 +5,15 @@ import com.jacksonplayz.thinkingwithaperture.client.model.armor.ModelLongFallBoo
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderCube;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderRadio;
 import com.jacksonplayz.thinkingwithaperture.client.render.entity.RenderTurret;
-import com.jacksonplayz.thinkingwithaperture.client.sound.RadioSound;
+import com.jacksonplayz.thinkingwithaperture.client.render.tileentity.TileEntityTestChamberSignRenderer;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityCube;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityRadio;
 import com.jacksonplayz.thinkingwithaperture.entity.EntityTurret;
+import com.jacksonplayz.thinkingwithaperture.tileentity.TileEntityTestChamberSign;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -30,12 +30,12 @@ public class ClientProxy extends CommonProxy
     public void init(FMLInitializationEvent event)
     {
         ClientRegistry.registerEntityShader(EntityTurret.class, new ResourceLocation(ThinkingWithAperture.MODID, "shaders/post/turret.json"));
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTestChamberSign.class, new TileEntityTestChamberSignRenderer());
 
         RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
         RenderingRegistry.registerEntityRenderingHandler(EntityCube.class, new RenderCube(renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityTurret.class, new RenderTurret(renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityRadio.class, new RenderRadio(renderManager));
-
     }
 
     @Override
