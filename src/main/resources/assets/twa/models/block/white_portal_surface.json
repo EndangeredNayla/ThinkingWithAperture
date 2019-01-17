@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "twa:blocks/white_portal_surface"
+    "all": "twa:block/white_portal_surface"
   }
 }

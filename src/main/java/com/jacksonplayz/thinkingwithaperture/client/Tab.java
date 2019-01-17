@@ -1,14 +1,11 @@
 package com.jacksonplayz.thinkingwithaperture.client;
 
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
-
-import com.jacksonplayz.thinkingwithaperture.init.ModItems;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class Tab extends CreativeTabs {
-
+public class Tab extends ItemGroup {
     public static final int FRAMES = 8;
     public static final long DELAY = 100;
 
@@ -27,8 +24,8 @@ public class Tab extends CreativeTabs {
     }
 
     @Override
-    public ItemStack getTabIconItem() {
-        return new ItemStack(ModItems.WEIGHTED_CUBE);
+    public ItemStack createIcon() {
+        return ItemStack.EMPTY;
     }
 
     @Override

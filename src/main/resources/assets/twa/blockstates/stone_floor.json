@@ -1,11 +1,10 @@
 {
   "variants": {
-    "normal": [
-      { "model": "twa:stone_floor" },
-      { "model": "twa:stone_floor", "y": 90 },
-      { "model": "twa:stone_floor", "y": 180 },
-      { "model": "twa:stone_floor", "y": 270 }
-    ],
-    "inventory": { "model": "twa:stone_floor" }
+    "": [
+      { "model": "twa:block/stone_floor" },
+      { "model": "twa:block/stone_floor", "y": 90 },
+      { "model": "twa:block/stone_floor", "y": 180 },
+      { "model": "twa:block/stone_floor", "y": 270 }
+    ]
   }
 }

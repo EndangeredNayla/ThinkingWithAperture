@@ -1,6 +1,5 @@
 {
   "variants": {
-    "normal": { "model": "twa:metal_surface" },
-    "inventory": { "model": "twa:metal_surface" }
+    "": { "model": "twa:block/metal_surface" }
   }
 }

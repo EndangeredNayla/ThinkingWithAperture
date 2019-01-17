@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "twa:blocks/stone_floor"
+    "all": "twa:block/stone_floor"
   }
 }

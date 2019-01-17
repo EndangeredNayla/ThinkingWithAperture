@@ -1,58 +1,81 @@
 package com.jacksonplayz.thinkingwithaperture.init;
 
+import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.IForgeRegistry;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * Handles registration in this mod.
- * 
- * @author Ocelot5836
+ * @author CoffeeCatRailway
+ * Created: 14/01/2019
  */
-public class RegistrationHandler
-{
+@Mod.EventBusSubscriber(modid = ThinkingWithAperture.MODID)
+public class RegistrationHandler {
 
-    @SubscribeEvent
-    public void registerItems(RegistryEvent.Register<Item> event)
-    {
-        event.getRegistry().registerAll(ModItems.getItems());
+    private static final Set<Item> ITEMS = new HashSet<>();
+    private static final Set<Block> BLOCKS = new HashSet<>();
+
+    public static void init() {
+        //ModItems.init();
+        //ThinkingWithAperture.logger.info("Items registered");
+        ModBlocks.init();
+        ThinkingWithAperture.logger.info("Blocks registered");
     }
 
     @SubscribeEvent
-    public void registerBlocks(RegistryEvent.Register<Block> event)
-    {
-        event.getRegistry().registerAll(ModBlocks.getBlocks());
+    public void registerItems(final RegistryEvent.Register<Item> event) {
+        IForgeRegistry<Item> reg = event.getRegistry();
+
+        for (Item item : ITEMS)
+            reg.register(item);
     }
 
     @SubscribeEvent
-    public void registerModels(ModelRegistryEvent event)
-    {
-        Item[] items = ModItems.getItems();
-        Block[] blocks = ModBlocks.getBlocks();
+    public void registerBlocks(final RegistryEvent.Register<Block> event) {
+        IForgeRegistry<Block> reg = event.getRegistry();
 
+        for (Block block : BLOCKS)
+            reg.register(block);
+    }
+
+    public static void registerItem(Item item) {
+        ITEMS.add(item);
+    }
+
+    public static void registerItem(Item... items) {
         for (Item item : items)
-        {
-            if (!(Block.getBlockFromItem(item) instanceof CustomModelRegistry))
-            {
-                if (item instanceof CustomModelRegistry)
-                {
-                    ((CustomModelRegistry) item).registerModels();
-                }
-                else
-                {
-                    ModelHandler.registerModel(item);
-                }
-            }
-        }
+            registerItem(item);
+    }
 
-        for (Block block : blocks)
-        {
-            if (block instanceof CustomModelRegistry)
-            {
-                ((CustomModelRegistry) block).registerModels();
-            }
+    public static void registerBlock(ItemGroup group, Block block) {
+        BLOCKS.add(block);
+        ItemBlock itemBlock = new ItemBlock(block, new Item.Builder().group(group));
+        itemBlock.setRegistryName(block.getRegistryName());
+        registerItem(itemBlock);
+    }
+
+    public static void registerBlock(Block block) {
+        registerBlock(null, block);
+    }
+
+    public static void registerBlock(ItemGroup group, Block... blocks) {
+        for (Block block : blocks) {
+            registerBlock(group, block);
+        }
+    }
+
+    public static void registerBlock(Block... blocks) {
+        for (Block block : blocks) {
+            registerBlock(null, block);
         }
     }
 }
