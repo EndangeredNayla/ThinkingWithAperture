@@ -8,7 +8,7 @@ import scala.actors.threadpool.Arrays;
 public class TileEntityTestChamberSign extends TileEntity
 {
     private short chamber;
-    private int maxChambers;
+    private short maxChambers;
     private byte[] skills;
 
     public TileEntityTestChamberSign()
@@ -24,7 +24,7 @@ public class TileEntityTestChamberSign extends TileEntity
     {
         super.writeToNBT(nbt);
         nbt.setShort("chamber", this.chamber);
-        nbt.setInteger("maxChambers", this.maxChambers);
+        nbt.setShort("maxChambers", this.maxChambers);
         nbt.setByteArray("skills", this.skills);
         return nbt;
     }
@@ -34,7 +34,7 @@ public class TileEntityTestChamberSign extends TileEntity
     {
         super.readFromNBT(nbt);
         this.chamber = nbt.getShort("chamber");
-        this.maxChambers = nbt.getInteger("maxChambers");
+        this.maxChambers = nbt.getShort("maxChambers");
         this.skills = nbt.getByteArray("skills");
     }
 
@@ -82,7 +82,7 @@ public class TileEntityTestChamberSign extends TileEntity
             maxChambers = 0;
         if (maxChambers > 99)
             maxChambers = 99;
-        this.maxChambers = maxChambers;
+        this.maxChambers = (short) maxChambers;
     }
 
     public void setSkill(int id, boolean activated)

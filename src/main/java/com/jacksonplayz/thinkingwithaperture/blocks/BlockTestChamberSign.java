@@ -1,6 +1,7 @@
 package com.jacksonplayz.thinkingwithaperture.blocks;
 
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
+import com.jacksonplayz.thinkingwithaperture.client.gui.ThinkingWithApertureGuiHandler;
 import com.jacksonplayz.thinkingwithaperture.tileentity.TileEntityTestChamberSign;
 
 import net.minecraft.block.BlockHorizontal;
@@ -15,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -33,6 +35,13 @@ public class BlockTestChamberSign extends BlockBase
         this.setSoundType(SoundType.GLASS);
         this.setCreativeTab(ThinkingWithAperture.TAB);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TOP, false));
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        player.openGui(ThinkingWithAperture.instance, ThinkingWithApertureGuiHandler.TEST_CHAMBER_SIGN, world, pos.getX(), state.getValue(TOP) ? pos.getY() - 1 : pos.getY(), pos.getZ());
+        return true;
     }
 
     @Override

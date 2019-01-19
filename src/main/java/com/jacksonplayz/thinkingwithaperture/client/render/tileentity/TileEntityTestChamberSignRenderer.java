@@ -73,7 +73,7 @@ public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer
 
         GlStateManager.pushMatrix();
         GlStateManager.scale(-1, -1, 1);
-        String chamber = Integer.toString(te.getChamber());
+        String chamber = Integer.toString(te.getChamber()).length() == 1 ? "0" + Integer.toString(te.getChamber()) : Integer.toString(te.getChamber());
         GlStateManager.translate(-1 - mc.fontRenderer.getStringWidth(chamber), -26, 0);
         mc.fontRenderer.drawString(chamber, 0, 0, 0xff000000);
         GlStateManager.popMatrix();

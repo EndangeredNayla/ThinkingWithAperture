@@ -3,6 +3,7 @@ package com.jacksonplayz.thinkingwithaperture.net;
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 import com.jacksonplayz.thinkingwithaperture.net.message.MessagePlayRadioSound;
 import com.jacksonplayz.thinkingwithaperture.net.message.MessagePlayRadioSoundHandler;
+import com.jacksonplayz.thinkingwithaperture.net.message.MessageUpdateTestChamberSign;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -17,6 +18,7 @@ public class NetworkHandler {
 
     public static void init() {
         registerMessage(MessagePlayRadioSoundHandler.class, MessagePlayRadioSound.class, Side.CLIENT);
+        registerMessage(MessageUpdateTestChamberSign.class, MessageUpdateTestChamberSign.class, Side.SERVER);
     }
 
     private static <REQ extends IMessage, REPLY extends IMessage> void registerMessage(Class<? extends IMessageHandler<REQ, REPLY>> messageHandler, Class<REQ> requestMessageType, Side side) {
