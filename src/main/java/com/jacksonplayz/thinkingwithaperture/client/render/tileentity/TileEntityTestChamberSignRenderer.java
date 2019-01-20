@@ -1,5 +1,7 @@
 package com.jacksonplayz.thinkingwithaperture.client.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
 import com.jacksonplayz.thinkingwithaperture.blocks.BlockTestChamberSign;
 import com.jacksonplayz.thinkingwithaperture.init.ModBlocks;
@@ -12,7 +14,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 
 public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer<TileEntityTestChamberSign>
 {
@@ -75,10 +76,16 @@ public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
-        GlStateManager.scale(-1, -1, 1);
         String chamber = Integer.toString(te.getChamber()).length() == 1 ? "0" + Integer.toString(te.getChamber()) : Integer.toString(te.getChamber());
-        GlStateManager.translate(-1 - mc.fontRenderer.getStringWidth(chamber), -26, 0);
+        GlStateManager.translate(1 + mc.fontRenderer.getStringWidth(chamber), 26, 0);
+        GlStateManager.scale(-1, -1, 1);
         mc.fontRenderer.drawString(chamber, 0, 0, 0xff000000);
+        GlStateManager.popMatrix();
+
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(12.875, 16.125, 0);
+        GlStateManager.scale(-0.0625, -0.0625, 1);
+        mc.fontRenderer.drawString((Integer.toString(te.getChamber()).length() == 1 ? "0" + Integer.toString(te.getChamber()) : Integer.toString(te.getChamber())) + " / " + (Integer.toString(te.getMaxChambers()).length() == 1 ? "0" + Integer.toString(te.getMaxChambers()) : Integer.toString(te.getMaxChambers())), 0, 0, 0xff000000);
         GlStateManager.popMatrix();
 
         GlStateManager.pushMatrix();
