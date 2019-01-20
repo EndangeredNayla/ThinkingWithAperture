@@ -78,8 +78,8 @@ public class TileEntityTestChamberSign extends TileEntity
 
     public void setMaxChambers(int maxChambers)
     {
-        if (maxChambers < 0)
-            maxChambers = 0;
+        if (maxChambers < 1)
+            maxChambers = 1;
         if (maxChambers > 99)
             maxChambers = 99;
         this.maxChambers = (short) maxChambers;

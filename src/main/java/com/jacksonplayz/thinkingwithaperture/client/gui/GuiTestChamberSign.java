@@ -3,17 +3,17 @@ package com.jacksonplayz.thinkingwithaperture.client.gui;
 import java.io.IOException;
 
 import com.jacksonplayz.thinkingwithaperture.ThinkingWithAperture;
-import com.jacksonplayz.thinkingwithaperture.client.render.tileentity.TileEntityTestChamberSignRenderer;
 import com.jacksonplayz.thinkingwithaperture.net.NetworkHandler;
 import com.jacksonplayz.thinkingwithaperture.net.message.MessageUpdateTestChamberSign;
 import com.jacksonplayz.thinkingwithaperture.tileentity.TileEntityTestChamberSign;
 
-import net.minecraft.client.gui.Gui;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.inventory.ClickType;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
@@ -23,25 +23,27 @@ public class GuiTestChamberSign extends GuiScreen
 
     private TileEntityTestChamberSign te;
     private BlockPos pos;
+    private TileEntityTestChamberSign renderTe;
 
     private TextureAtlasSprite topTexture;
     private TextureAtlasSprite bottomTexture;
 
     private int chamber;
-    private int maxChamber;
+    private int maxChambers;
     private boolean[] skills;
 
     public GuiTestChamberSign(TileEntityTestChamberSign te)
     {
         this.te = te;
         this.pos = te.getPos();
-        this.chamber = te.getChamber();
-        this.maxChamber = te.getMaxChambers();
+        this.renderTe = new TileEntityTestChamberSign();
+
         this.skills = new boolean[10];
         for (int i = 0; i < this.skills.length; i++)
         {
             this.skills[i] = this.te.hasSkill(i);
         }
+        this.setChamberParameters(false, te.getChamber(), te.getMaxChambers(), this.skills);
     }
 
     @Override
@@ -50,13 +52,16 @@ public class GuiTestChamberSign extends GuiScreen
         super.initGui();
         this.topTexture = this.mc.getTextureMapBlocks().getAtlasSprite(ThinkingWithAperture.MODID + ":blocks/test_chamber_sign_top");
         this.bottomTexture = this.mc.getTextureMapBlocks().getAtlasSprite(ThinkingWithAperture.MODID + ":blocks/test_chamber_sign_bottom");
+        this.addButton(new GuiButton(0, this.width / 2 - 176 / 2 + 71, this.height / 2 - 138 / 2 + 5, 49, 20, "+"));
+        this.addButton(new GuiButton(1, this.width / 2 - 176 / 2 + 71, this.height / 2 - 138 / 2 + 27, 49, 20, "-"));
+        this.addButton(new GuiButton(2, this.width / 2 - 176 / 2 + 122, this.height / 2 - 138 / 2 + 5, 49, 20, "+"));
+        this.addButton(new GuiButton(3, this.width / 2 - 176 / 2 + 122, this.height / 2 - 138 / 2 + 27, 49, 20, "-"));
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         super.drawDefaultBackground();
-        super.drawScreen(mouseX, mouseY, partialTicks);
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(this.width / 2 - 176 / 2, this.height / 2 - 138 / 2, 0);
@@ -68,22 +73,15 @@ public class GuiTestChamberSign extends GuiScreen
         this.drawTexturedModalRect(5, 5, this.topTexture, 64, 64);
         this.drawTexturedModalRect(5, 69, this.bottomTexture, 64, 64);
 
-        this.mc.getTextureManager().bindTexture(TileEntityTestChamberSignRenderer.ICONS_LOCATION);
-        
-        GlStateManager.translate(0, 0.5, 0);
-        for (int yPos = 0; yPos < 2; yPos++)
-        {
-            GlStateManager.pushMatrix();
-            for (int xPos = 0; xPos < 5; xPos++)
-            {
-                Gui.drawScaledCustomSizeModalRect(17, 90, 1 + xPos * 19, 8 + yPos * 19 + (this.skills[xPos + yPos * 5] ? 38 : 0), 18, 18, 9, 9, 128, 128);
-                GlStateManager.translate(9.5, 0, 0);
-            }
-            GlStateManager.popMatrix();
-            GlStateManager.translate(0, 9.5, 0);
-        }
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(69, 133, 0);
+        GlStateManager.scale(-16 * 4, -16 * 4, 1);
+        TileEntityRendererDispatcher.instance.render(this.renderTe, 0, 0, 0, 0, partialTicks);
+        GlStateManager.popMatrix();
 
         GlStateManager.popMatrix();
+
+        super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
     @Override
@@ -97,11 +95,12 @@ public class GuiTestChamberSign extends GuiScreen
                 if (mouseX >= 17 + xPos * 9.5 + (this.width / 2 - 176 / 2) && mouseX < 17 + xPos * 9.5 + (this.width / 2 - 176 / 2) + 9.5 && mouseY >= 90 + yPos * 9.5 + (this.height / 2 - 138 / 2) && mouseY < 90 + yPos * 9.5 + (this.height / 2 - 138 / 2) + 9.5)
                 {
                     this.skills[xPos + yPos * 5] = !this.skills[xPos + yPos * 5];
+                    this.setChamberParameters(true, this.chamber, this.maxChambers, this.skills);
                 }
             }
         }
     }
-    
+
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
@@ -112,10 +111,30 @@ public class GuiTestChamberSign extends GuiScreen
     }
 
     @Override
+    protected void actionPerformed(GuiButton button) throws IOException
+    {
+        switch (button.id)
+        {
+        case 0:
+            this.setChamberParameters(true, this.chamber + 1, this.maxChambers, this.skills);
+            break;
+        case 1:
+            this.setChamberParameters(true, this.chamber - 1, this.maxChambers, this.skills);
+            break;
+        case 2:
+            this.setChamberParameters(true, this.chamber, this.maxChambers + 1, this.skills);
+            break;
+        case 3:
+            this.setChamberParameters(true, this.chamber, this.maxChambers - 1, this.skills);
+            break;
+        }
+    }
+
+    @Override
     public void onGuiClosed()
     {
         super.onGuiClosed();
-        this.setChamberParameters(this.chamber, this.maxChamber, this.skills);
+        this.setChamberParameters(true, this.chamber, this.maxChambers, this.skills);
     }
 
     @Override
@@ -124,15 +143,28 @@ public class GuiTestChamberSign extends GuiScreen
         return false;
     }
 
-    private void setChamberParameters(int chamber, int maxChamber, boolean... skills)
-    {
-        NetworkHandler.INSTANCE.sendToServer(new MessageUpdateTestChamberSign(this.pos, 7, 10, skills));
-        TileEntityTestChamberSign te = (TileEntityTestChamberSign) this.mc.world.getTileEntity(this.pos);
-        te.setMaxChambers(maxChamber);
-        te.setChamber(chamber);
+    private void setChamberParameters(boolean updateServer, int chamber, int maxChambers, boolean... skills)
+    {        
+        this.renderTe.setMaxChambers(maxChambers);
+        this.maxChambers = this.renderTe.getMaxChambers();
+        this.renderTe.setChamber(chamber);
+        this.chamber = this.renderTe.getChamber();
+        for (int i = 0; i < this.skills.length; i++)
+        {
+            this.renderTe.setSkill(i, i >= skills.length ? false : skills[i]);
+            this.skills[i] = this.renderTe.hasSkill(i);
+        }
+
+        this.te.setMaxChambers(maxChambers);
+        this.te.setChamber(chamber);
         for (int i = 0; i < skills.length; i++)
         {
-            te.setSkill(i, skills[i]);
+            this.te.setSkill(i, skills[i]);
+        }
+
+        if (updateServer)
+        {
+            Minecraft.getMinecraft().addScheduledTask(() -> NetworkHandler.INSTANCE.sendToServer(new MessageUpdateTestChamberSign(this.pos, chamber, maxChambers, skills)));
         }
     }
 }

@@ -8,9 +8,7 @@ import com.jacksonplayz.thinkingwithaperture.tileentity.TileEntityTestChamberSig
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -23,10 +21,10 @@ public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer
     @Override
     public void render(TileEntityTestChamberSign te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        IBlockState state = te.getWorld().getBlockState(te.getPos());
+        IBlockState state = te.hasWorld() ? te.getWorld().getBlockState(te.getPos()) : null;
         EnumFacing facing = EnumFacing.NORTH;
         Minecraft mc = Minecraft.getMinecraft();
-        if (state.getBlock() == ModBlocks.TEST_CHAMBER_SIGN)
+        if (state != null && state.getBlock() == ModBlocks.TEST_CHAMBER_SIGN)
         {
             facing = state.getValue(BlockTestChamberSign.FACING);
         }
