@@ -10,17 +10,21 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockSurface extends BlockBase {
+public class BlockSurface extends BlockBase
+{
 
     public boolean canPortalOn;
 
-    public BlockSurface(Material material, boolean canPortalOn, String name) {
+    public BlockSurface(Material material, boolean canPortalOn, String name)
+    {
         super(material, canPortalOn ? MapColor.SNOW : MapColor.GRAY, name, name);
         this.canPortalOn = canPortalOn;
         this.setCreativeTab(ThinkingWithAperture.TAB);
     }
 
-    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+    @Override
+    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    {
         return this.canPortalOn;
     }
 }

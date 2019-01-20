@@ -20,6 +20,7 @@ public class ItemPotatOS extends ItemBase
     public ItemPotatOS(String name)
     {
         super(name);
+        this.setMaxStackSize(1);
     }
 
     @Override
