@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer<TileEntityTestChamberSign>
 {
@@ -31,6 +32,8 @@ public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer
             facing = state.getValue(BlockTestChamberSign.FACING);
         }
 
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         GlStateManager.translate(0.5, 0.5, 0.5);
@@ -90,5 +93,6 @@ public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer
         GlStateManager.popMatrix();
 
         GlStateManager.popMatrix();
+        GlStateManager.disableBlend();
     }
 }
