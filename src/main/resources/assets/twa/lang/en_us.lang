@@ -45,3 +45,8 @@ tile.white_portal_surface.info=A portalable surface.
 
 tile.test_chamber_sign.name=Testing Chamber Sign
 tile.test_chamber_sign.info=Just your ordinary testing chamber sign.
+
+gui.twa.test_chamber_sign.button.chamber.add=Add to chamber
+gui.twa.test_chamber_sign.button.chamber.subtract=Subtract from chamber
+gui.twa.test_chamber_sign.button.maxChambers.add=Add to max chambers
+gui.twa.test_chamber_sign.button.maxChambers.subtract=Subtract from max chambers

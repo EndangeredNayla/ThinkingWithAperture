@@ -80,6 +80,7 @@ public class MessageUpdateTestChamberSign implements IMessage, IMessageHandler<M
         if (ctx.side == Side.CLIENT || !message.valid)
             return null;
         World world = ctx.getServerHandler().player.world;
+        System.out.println(world.getTileEntity(message.pos));
         if (world.getTileEntity(message.pos) instanceof TileEntityTestChamberSign)
         {
             world.getMinecraftServer().addScheduledTask(() -> this.process(world, message.pos, message.chamber, message.maxChambers, message.skills));
@@ -87,7 +88,7 @@ public class MessageUpdateTestChamberSign implements IMessage, IMessageHandler<M
         return null;
     }
 
-    private void process(World world, BlockPos pos, short chamber, short maxChamber, byte[] skills)
+    private void process(World world, BlockPos pos, int chamber, int maxChamber, byte[] skills)
     {
         TileEntityTestChamberSign te = (TileEntityTestChamberSign) world.getTileEntity(pos);
         te.setMaxChambers(maxChamber);
