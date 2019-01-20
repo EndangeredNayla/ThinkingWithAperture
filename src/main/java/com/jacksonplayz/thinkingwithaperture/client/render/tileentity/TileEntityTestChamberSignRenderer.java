@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -17,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer<TileEntityTestChamberSign>
 {
     public static final ResourceLocation ICONS_LOCATION = new ResourceLocation(ThinkingWithAperture.MODID, "textures/blocks/test_chamber_sign_icons.png");
+    public static final ResourceLocation LOGO_LOCATION = new ResourceLocation(ThinkingWithAperture.MODID, "textures/gui/logo.png");
 
     @Override
     public void render(TileEntityTestChamberSign te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -76,6 +78,13 @@ public class TileEntityTestChamberSignRenderer extends TileEntitySpecialRenderer
         String chamber = Integer.toString(te.getChamber()).length() == 1 ? "0" + Integer.toString(te.getChamber()) : Integer.toString(te.getChamber());
         GlStateManager.translate(-1 - mc.fontRenderer.getStringWidth(chamber), -26, 0);
         mc.fontRenderer.drawString(chamber, 0, 0, 0xff000000);
+        GlStateManager.popMatrix();
+
+        GlStateManager.pushMatrix();
+        mc.getTextureManager().bindTexture(LOGO_LOCATION);
+        GlStateManager.translate(14.5, 3.5, 0);
+        GlStateManager.scale(-1, -1, 1);
+        Gui.drawScaledCustomSizeModalRect(0, 0, 0, 0, 1, 1, 8, 2, 1, 1);
         GlStateManager.popMatrix();
 
         GlStateManager.popMatrix();
