@@ -14,7 +14,7 @@ public class TileEntityTestChamberSign extends TileEntity
     public TileEntityTestChamberSign()
     {
         this.setMaxChambers(1);
-        this.setChamber(0);
+        this.setChamber(1);
         this.skills = new byte[10];
         Arrays.fill(this.skills, (byte) 0);
     }
