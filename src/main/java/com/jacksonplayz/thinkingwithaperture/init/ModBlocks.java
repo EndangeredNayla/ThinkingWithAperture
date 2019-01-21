@@ -2,6 +2,8 @@ package com.jacksonplayz.thinkingwithaperture.init;
 
 import java.util.List;
 
+import com.jacksonplayz.thinkingwithaperture.blocks.BlockPortalCake;
+import net.minecraft.block.BlockPortal;
 import org.apache.commons.lang3.Validate;
 
 import com.google.common.collect.Lists;
@@ -26,6 +28,7 @@ public class ModBlocks
     public static final Block METAL_SURFACE;
     public static final Block STONE_FLOOR;
     public static final Block TEST_CHAMBER_SIGN;
+    public static final Block PORTAL_CAKE;
 
     static
     {
@@ -33,6 +36,7 @@ public class ModBlocks
         METAL_SURFACE = new BlockSurface(Material.IRON, false, "metal_surface");
         STONE_FLOOR = new BlockSurface(Material.ROCK, true, "stone_floor");
         TEST_CHAMBER_SIGN = new BlockTestChamberSign("test_chamber_sign");
+        PORTAL_CAKE = new BlockPortalCake();
 
         register();
         registerTileEntities();
@@ -44,6 +48,7 @@ public class ModBlocks
         registerFullBlock(METAL_SURFACE);
         registerFullBlock(STONE_FLOOR);
         registerFullBlock(TEST_CHAMBER_SIGN);
+        registerFullBlock(PORTAL_CAKE);
     }
 
     private static void registerTileEntities()

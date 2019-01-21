@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "inventory": { "model": "twa:portal_cake/portal_cake" },
+    "bites=0": { "model": "twa:portal_cake/portal_cake" },
+    "bites=1": { "model": "twa:portal_cake/portal_cake_2" },
+    "bites=2": { "model": "twa:portal_cake/portal_cake_3" },
+    "bites=3": { "model": "twa:portal_cake/portal_cake_4" },
+    "bites=4": { "model": "twa:portal_cake/portal_cake_5" },
+    "bites=5": { "model": "twa:portal_cake/portal_cake_6" },
+    "bites=6": { "model": "twa:portal_cake/portal_cake_7" }
+  }
+}

@@ -1,0 +1,48 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "twa:blocks/portal_cake_1",
+		"1": "twa:blocks/portal_cake 2",
+		"2": "twa:blocks/portal_cake_3",
+		"particle": "twa:blocks/portal_cake_1"
+	},
+	"elements": [
+		{
+			"from": [10, 0, 2],
+			"to": [14, 6, 14],
+			"faces": {
+				"north": {"uv": [8, 10, 12, 16], "texture": "#0"},
+				"east": {"uv": [0, 10, 12, 16], "texture": "#0"},
+				"south": {"uv": [8, 10, 12, 16], "texture": "#0"},
+				"west": {"uv": [0, 10, 12, 16], "texture": "#2"},
+				"up": {"uv": [8, 4, 12, 16], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [8, 4, 12, 16], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [5, 0.25, 7],
+			"to": [9, 0.25, 9],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 4], "rotation": 90, "texture": "#missing"},
+				"east": {"uv": [0, 0, 2, 0], "rotation": 180, "texture": "#missing"},
+				"south": {"uv": [0, 0, 0, 4], "rotation": 270, "texture": "#missing"},
+				"west": {"uv": [0, 0, 2, 0], "texture": "#missing"},
+				"up": {"uv": [14, 12, 12, 16], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [12, 12, 14, 16], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [10, 6.25, 3],
+			"to": [13, 6.25, 13],
+			"faces": {
+				"north": {"uv": [0, 0, 10, 0], "texture": "#missing"},
+				"east": {"uv": [0, 0, 10, 0], "texture": "#missing"},
+				"south": {"uv": [0, 0, 10, 0], "texture": "#missing"},
+				"west": {"uv": [0, 0, 10, 0], "texture": "#missing"},
+				"up": {"uv": [0, 0, 3, 10], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [0, 10, 10, 0], "rotation": 180, "texture": "#0"}
+			}
+		}
+	]
+}
