@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
 public class MessagePlayRadioSoundHandler implements IMessageHandler<MessagePlayRadioSound, IMessage>
 {
     @Override
